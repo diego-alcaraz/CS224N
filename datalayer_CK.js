@@ -1,3 +1,8 @@
+window.dataLayer.push({
+  event: "form_view",
+  form_id: 'STRING' //Example: form_free_audit | form_free_consult | form_free_contribution | form_free_conversion_guide
+});
+
 dataLayer.push({ submitted_fields: null });  // Clear the previous submitted_fields object
 
 window.dataLayer.push({

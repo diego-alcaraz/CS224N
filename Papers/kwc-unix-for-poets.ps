@@ -1,0 +1,2655 @@
+%!PS-Adobe-2.0
+%%Copyright: Copyright (c) 1993 AT&T, All Rights Reserved
+%%Version: 3.4
+%%DocumentFonts: (atend)
+%%Pages: (atend)
+%%EndComments
+/DpostDict 200 dict def
+DpostDict begin
+%
+% Copyright (c) 1993 AT&T, All Rights Reserved
+%
+% Version 3.4 prologue for troff files.
+%
+
+/#copies 1 store
+/Prologue (dpost.ps) def
+/aspectratio 1 def
+/formsperpage 1 def
+/landscape false def
+/linewidth .3 def
+/magnification 1 def
+/margin 0 def
+/orientation 0 def
+/resolution 720 def
+/rotation 1 def
+/xoffset 0 def
+/yoffset 0 def
+
+/roundpage true def
+/useclippath true def
+/pagebbox [0 0 612 792] def
+
+/R  /Times-Roman def
+/I  /Times-Italic def
+/B  /Times-Bold def
+/BI /Times-BoldItalic def
+/H  /Helvetica def
+/HI /Helvetica-Oblique def
+/HB /Helvetica-Bold def
+/HX /Helvetica-BoldOblique def
+/CW /Courier def
+/CO /Courier def
+/CI /Courier-Oblique def
+/CB /Courier-Bold def
+/CX /Courier-BoldOblique def
+/PA /Palatino-Roman def
+/PI /Palatino-Italic def
+/PB /Palatino-Bold def
+/PX /Palatino-BoldItalic def
+/Hr /Helvetica-Narrow def
+/Hi /Helvetica-Narrow-Oblique def
+/Hb /Helvetica-Narrow-Bold def
+/Hx /Helvetica-Narrow-BoldOblique def
+/KR /Bookman-Light def
+/KI /Bookman-LightItalic def
+/KB /Bookman-Demi def
+/KX /Bookman-DemiItalic def
+/AR /AvantGarde-Book def
+/AI /AvantGarde-BookOblique def
+/AB /AvantGarde-Demi def
+/AX /AvantGarde-DemiOblique def
+/NR /NewCenturySchlbk-Roman def
+/NI /NewCenturySchlbk-Italic def
+/NB /NewCenturySchlbk-Bold def
+/NX /NewCenturySchlbk-BoldItalic def
+/ZD /ZapfDingbats def
+/ZI /ZapfChancery-MediumItalic def
+/S  /S def
+/S1 /S1 def
+/GR /Symbol def
+
+/inch {72 mul} bind def
+/min {2 copy gt {exch} if pop} bind def
+
+/setup {
+	counttomark 2 idiv {def} repeat pop
+
+	landscape {/orientation 90 orientation add def} if
+	/scaling 72 resolution div def
+	linewidth setlinewidth
+	1 setlinecap
+
+	pagedimensions
+	xcenter ycenter translate
+	orientation rotation mul rotate
+	width 2 div neg height 2 div translate
+	xoffset inch yoffset inch neg translate
+	margin 2 div dup neg translate
+	magnification dup aspectratio mul scale
+	scaling scaling scale
+
+	addmetrics
+	0 0 moveto
+} def
+
+/pagedimensions {
+	useclippath userdict /gotpagebbox known not and {
+		/pagebbox [clippath pathbbox newpath] def
+		roundpage currentdict /roundpagebbox known and {roundpagebbox} if
+	} if
+	pagebbox aload pop
+	4 -1 roll exch 4 1 roll 4 copy
+	landscape {4 2 roll} if
+	sub /width exch def
+	sub /height exch def
+	add 2 div /xcenter exch def
+	add 2 div /ycenter exch def
+	userdict /gotpagebbox true put
+} def
+
+/landscapepage {
+	landscape not {
+		0 height scaling div neg translate	% not quite
+		90 rotate
+	} if
+} bind def
+
+/portraitpage {
+	landscape {
+		width scaling div 0 translate	% not quite
+		-90 rotate
+	} if
+} bind def
+
+/addmetrics {
+	/Symbol /S null Sdefs cf
+	/Times-Roman /S1 StandardEncoding dup length array copy S1defs cf
+} def
+
+/pagesetup {
+	/page exch def
+	currentdict /pagedict known currentdict page known and {
+		page load pagedict exch get cvx exec
+	} if
+} def
+
+/decodingdefs [
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg /y exch def counttomark 2 idiv {y moveto show} repeat}
+	{neg moveto {2 index stringwidth pop sub exch div 0 32 4 -1 roll widthshow} repeat}
+	{neg moveto {spacewidth sub 0.0 32 4 -1 roll widthshow} repeat}
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg setfunnytext}
+] def
+
+/setdecoding {/t decodingdefs 3 -1 roll get bind def} bind def
+
+/w {neg moveto show} bind def
+/m {neg dup /y exch def moveto} bind def
+/done {/lastpage where {pop lastpage} if} def
+
+/f {
+	dup /font exch def findfont exch
+	dup /ptsize exch def scaling div dup /size exch def scalefont setfont
+	linewidth ptsize mul scaling 10 mul div setlinewidth
+	/spacewidth ( ) stringwidth pop def
+} bind def
+
+/changefont {
+	/fontheight exch def
+	/fontslant exch def
+	currentfont [
+		1 0
+		fontheight ptsize div fontslant sin mul fontslant cos div
+		fontheight ptsize div
+		0 0
+	] makefont setfont
+} bind def
+
+/sf {f} bind def
+
+/cf {
+	dup length 2 idiv
+	/entries exch def
+	/chtab exch def
+	/newencoding exch def
+	/newfont exch def
+
+	findfont dup length 1 add dict
+	/newdict exch def
+	{1 index /FID ne {newdict 3 1 roll put}{pop pop} ifelse} forall
+
+	newencoding type /arraytype eq {newdict /Encoding newencoding put} if
+
+	newdict /Metrics entries dict put
+	newdict /Metrics get
+	begin
+		chtab aload pop
+		1 1 entries {pop def} for
+		newfont newdict definefont pop
+	end
+} bind def
+
+%
+% A few arrays used to adjust reference points and character widths in some
+% of the printer resident fonts. If square roots are too high try changing
+% the lines describing /radical and /radicalex to,
+%
+%	/radical	[0 -75 550 0]
+%	/radicalex	[-50 -75 500 0]
+%
+% Move braceleftbt a bit - default PostScript character is off a bit.
+%
+
+/Sdefs [
+	/bracketlefttp		[201 500]
+	/bracketleftbt		[201 500]
+	/bracketrighttp		[-81 380]
+	/bracketrightbt		[-83 380]
+	/braceleftbt		[203 490]
+	/bracketrightex		[220 -125 500 0]
+	/radical		[0 0 550 0]
+	/radicalex		[-50 0 500 0]
+	/parenleftex		[-20 -170 0 0]
+	/integral		[100 -50 500 0]
+	/infinity		[10 -75 730 0]
+] def
+
+/S1defs [
+	/underscore		[0 80 500 0]
+	/endash			[7 90 650 0]
+] def
+end
+%%EndProlog
+%%BeginSetup
+DpostDict begin
+mark
+/resolution 720 def
+setup
+2 setdecoding
+end
+%%EndSetup
+%%Page: 1 1
+DpostDict begin
+/saveobj save def
+mark
+1 pagesetup
+18 R f
+(- 1 -)2 298 1 2731 880 t
+22 B f
+(Unix)2110 1760 w
+22 S f
+(\324)2563 1760 w
+22 B f
+(for Poets)1 835 1 2814 1760 t
+18 R f
+(Kenneth Ward Church)2 1624 1 2068 2200 t
+(AT&T Bell Laboratories)2 1785 1 1987 2420 t
+(kwc@research.att.com)2061 2640 w
+16 S f
+(\267)826 3300 w
+18 R f
+(Text is available like never before)5 2442 1 990 3300 t
+16 S f
+(\267)1096 3630 w
+18 R f
+(Dictionaries, corpora, etc.)2 1855 1 1260 3630 t
+16 S f
+(\267)1096 3960 w
+18 R f
+(Data Collection Efforts:)2 1724 1 1260 3960 t
+(ACL/DCI, BNC, CLR, ECI, EDR, ICAME, LDC)6 3577 1 1260 4180 t
+16 S f
+(\267)1096 4510 w
+18 R f
+(Information Super Highway Roadkill:)3 2739 1 1260 4510 t
+(email, bboards, faxes)2 1523 1 1260 4730 t
+16 S f
+(\267)1096 5060 w
+18 R f
+(Billions and billions of words)4 2138 1 1260 5060 t
+16 S f
+(\267)826 5610 w
+18 R f
+(What can we do with it all?)6 1973 1 990 5610 t
+16 S f
+(\267)826 6160 w
+18 R f
+(It is better to do something simple,)6 2499 1 990 6160 t
+(than nothing at all.)3 1347 1 990 6380 t
+16 S f
+(\267)826 6930 w
+18 R f
+(You can do the simple things yourself)6 2733 1 990 6930 t
+( for ``help'' from a)4 1368(\(DIY is more satisfying than begging)5 2682 2 990 7150 t
+(computer of\256cer.\))1 1293 1 990 7370 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 1 1
+%%Page: 2 2
+DpostDict begin
+/saveobj save def
+mark
+2 pagesetup
+18 R f
+(- 2 -)2 298 1 2731 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Exercises to be addressed]
+17 B f
+(Exercises to be addressed)3 1846 1 720 1760 t
+18 R f
+( words in a text)4 1107(1. Count)1 756 2 855 2420 t
+( a list of words in various ways)7 2239(2. Sort)1 615 2 855 2970 t
+16 S f
+(\267)1276 3300 w
+18 R f
+(ascii order)1 750 1 1440 3300 t
+16 S f
+(\267)1276 3630 w
+18 R f
+(dictionary order)1 1149 1 1440 3630 t
+16 S f
+(\267)1276 3960 w
+18 R f
+(``rhyming'' order)1 1267 1 1440 3960 t
+( useful info from a dictionary)5 2106(3. Extract)1 832 2 855 4510 t
+( ngram statistics)2 1166(4. Compute)1 975 2 855 5060 t
+( a Concordance)2 1115(5. Make)1 723 2 855 5610 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 2 2
+%%Page: 3 3
+DpostDict begin
+/saveobj save def
+mark
+3 pagesetup
+18 R f
+(- 3 -)2 298 1 2731 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Tools]
+17 B f
+(Tools)720 1760 w
+16 S f
+(\267)826 2420 w
+18 R f
+(grep: search for a pattern \(regular expression\))6 3269 1 990 2420 t
+16 S f
+(\267)826 2750 w
+18 R f
+(sort)990 2750 w
+16 S f
+(\267)826 3080 w
+18 R f
+(uniq \261c \(count duplicates\))3 1868 1 990 3080 t
+16 S f
+(\267)826 3410 w
+18 R f
+(tr \(translate characters\))2 1646 1 990 3410 t
+16 S f
+(\267)826 3740 w
+18 R f
+(wc \(word count\))2 1185 1 990 3740 t
+16 S f
+(\267)826 4070 w
+18 R f
+(sed \(edit string\))2 1125 1 990 4070 t
+16 S f
+(\267)826 4400 w
+18 R f
+(awk \(simple programming language\))3 2655 1 990 4400 t
+16 S f
+(\267)826 4730 w
+18 R f
+(cut)990 4730 w
+16 S f
+(\267)826 5060 w
+18 R f
+(paste)990 5060 w
+16 S f
+(\267)826 5390 w
+18 R f
+(comm)990 5390 w
+16 S f
+(\267)826 5720 w
+18 R f
+(join)990 5720 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 3 3
+%%Page: 4 4
+DpostDict begin
+/saveobj save def
+mark
+4 pagesetup
+18 R f
+(- 4 -)2 298 1 2731 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Exercise 1: Count words in a text]
+17 B f
+(Exercise 1: Count words in a text)6 2408 1 720 1760 t
+16 S f
+(\267)826 2420 w
+18 R f
+(Input: text \256le \(genesis\))3 1709 1 990 2420 t
+16 S f
+(\267)826 2970 w
+18 R f
+(Output: list of words in the \256le with freq counts)9 3428 1 990 2970 t
+16 S f
+(\267)826 3520 w
+18 R f
+(Algorithm)990 3520 w
+( \(tr\))1 272(1. Tokenize)1 982 2 1125 3850 t
+( \(sort\))1 432(2. Sort)1 615 2 1125 4180 t
+( duplicates \(uniq \261c\))3 1469(3. Count)1 756 2 1125 4510 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 4 4
+%%Page: 5 5
+DpostDict begin
+/saveobj save def
+mark
+5 pagesetup
+18 R f
+(- 5 -)2 298 1 2731 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Solution to Exercise 1]
+17 B f
+(Solution to Exercise 1)3 1575 1 720 1760 t
+18 CW f
+(tr -sc 'A-Za-z' '\\012' < genesis |)6 3672 1 720 2090 t
+(sort |)1 648 1 720 2310 t
+(uniq -c)1 756 1 720 2530 t
+(1)1044 3190 w
+(2 A)1 324 1 1044 3410 t
+(8 Abel)1 648 1 1044 3630 t
+(1 Abelmizraim)1 1404 1 1044 3850 t
+(1 Abidah)1 864 1 1044 4070 t
+(1 Abide)1 756 1 1044 4290 t
+(1 Abimael)1 972 1 1044 4510 t
+(24 Abimelech)1 1296 1 936 4730 t
+(134 Abraham)1 1188 1 828 4950 t
+(59 Abram)1 864 1 936 5170 t
+(...)1260 5390 w
+18 R f
+(Glue)720 6160 w
+18 S f
+(_ ___________________)1 1767 1 720 6200 t
+18 R f
+(read from input \256le)3 1390 1 720 6420 t
+18 S f
+(<)2388 6420 w
+18 R f
+(write to output \256le)3 1333 1 720 6640 t
+18 S f
+(>)2388 6640 w
+18 R f
+(pipe)720 6860 w
+18 S f
+(\357)2388 6860 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 5 5
+%%Page: 6 6
+DpostDict begin
+/saveobj save def
+mark
+6 pagesetup
+18 R f
+(- 6 -)2 298 1 2731 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Step by Step]
+17 B f
+(Step by Step)2 908 1 720 1760 t
+18 CW f
+(sed 5q < genesis)3 1728 1 720 2090 t
+(#Genesis)720 2310 w
+(1:1 In the beginning God created the heaven and the earth.)10 6264 1 720 2530 t
+(1:2 And the earth was without form, and void; and darkness [was] upon the face of the deep. And the Spirit of God moved upon the face of the waters.)29 15984 1 720 2750 t
+(1:3 And God said, Let there be light: and there was light.)11 6264 1 720 2970 t
+(1:4 And God saw the light, that [it was] good: and God divided the light from the darkness.)17 9828 1 720 3190 t
+(tr -sc 'A-Za-z' '\\012' < genesis | sed 5q)8 4428 1 720 3630 t
+(Genesis)720 4070 w
+(In)720 4290 w
+(the)720 4510 w
+(beginning)720 4730 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 6 6
+%%Page: 7 7
+DpostDict begin
+/saveobj save def
+mark
+7 pagesetup
+18 R f
+(- 7 -)2 298 1 2731 880 t
+18 CW f
+(tr -sc 'A-Za-z' '\\012' < genesis |)6 3672 1 720 1760 t
+(sort | sed 5q)3 1404 1 720 1980 t
+(A)720 2420 w
+(A)720 2640 w
+(Abel)720 2860 w
+(Abel)720 3080 w
+(tr -sc 'A-Za-z' '\\012' < genesis |)6 3672 1 720 3520 t
+(sort | uniq -c | sed 5q)6 2484 1 720 3740 t
+(1)1044 4180 w
+(2 A)1 324 1 1044 4400 t
+(8 Abel)1 648 1 1044 4620 t
+(1 Abelmizraim)1 1404 1 1044 4840 t
+(1 Abidah)1 864 1 1044 5060 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 7 7
+%%Page: 8 8
+DpostDict begin
+/saveobj save def
+mark
+8 pagesetup
+18 R f
+(- 8 -)2 298 1 2731 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = More Counting Exercises]
+17 B f
+(More Counting Exercises)2 1841 1 720 1760 t
+16 S f
+(\267)826 2090 w
+18 R f
+(Merge the counts for upper and lower case.)7 3105 1 990 2090 t
+18 CW f
+(tr 'a-z' 'A-Z' < genesis |)5 2808 1 990 2420 t
+(tr -sc 'A-Z' '\\012' |)4 2268 1 990 2640 t
+(sort |)1 648 1 990 2860 t
+(uniq -c)1 756 1 990 3080 t
+16 S f
+(\267)826 3740 w
+18 R f
+(Count sequences of vowels)3 1960 1 990 3740 t
+18 CW f
+(tr 'a-z' 'A-Z' < genesis |)5 2808 1 990 4070 t
+(tr -sc 'AEIOU' '\\012'|)3 2376 1 990 4290 t
+(sort |)1 648 1 990 4510 t
+(uniq -c)1 756 1 990 4730 t
+16 S f
+(\267)826 5390 w
+18 R f
+(Count sequences of consonants)3 2249 1 990 5390 t
+18 CW f
+(tr 'a-z' 'A-Z' < genesis |)5 2808 1 990 5720 t
+(tr -sc 'BCDFGHJKLMNPQRSTVWXYZ' '\\012' |)4 4212 1 990 5940 t
+(sort |)1 648 1 990 6160 t
+(uniq -c)1 756 1 990 6380 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 8 8
+%%Page: 9 9
+DpostDict begin
+/saveobj save def
+mark
+9 pagesetup
+18 R f
+(- 9 -)2 298 1 2731 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = sort lines of text]
+17 B f
+(sort lines of text)3 1156 1 720 1760 t
+20 B f
+(Example Explanation)1 2074 1 1162 2530 t
+18 S f
+(_ ______________________________________)1 3436 1 1162 2570 t
+18 R f
+( order)1 422( dictionary)1 1259(sort \261d)1 494 3 1162 2790 t
+( case)1 352( fold)1 852(sort \261f)1 463 3 1162 3010 t
+( order)1 422( numeric)1 1119(sort \261n)1 494 3 1162 3230 t
+( numeric order)2 1054( reverse)1 988(sort \261nr)1 553 3 1162 3450 t
+( with \256eld 1 \(starting from 0\))6 2094( start)1 829(sort +1)1 505 3 1162 3670 t
+( with 50th character)3 1428( start)1 604(sort +0.50)1 730 3 1162 3890 t
+( with 5th character of \256eld 1)6 2032( start)1 694(sort +1.5)1 640 3 1162 4110 t
+18 S f
+(\347)2053 4110 w
+(\347)2053 3930 w
+(\347)2053 3750 w
+(\347)2053 3570 w
+(\347)2053 3390 w
+(\347)2053 3210 w
+(\347)2053 3030 w
+(\347)2053 2850 w
+(\347)2053 2670 w
+(\347)2053 2490 w
+18 R f
+(See man page)2 996 1 720 4770 t
+18 CW f
+(man sort)1 864 1 720 4990 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 9 9
+%%Page: 10 10
+DpostDict begin
+/saveobj save def
+mark
+10 pagesetup
+18 R f
+(- 10 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Sort Exercises]
+17 B f
+(Sort Exercises)1 1033 1 720 1760 t
+16 S f
+(\267)826 2090 w
+18 R f
+(Sort the words in Genesis by freq)6 2403 1 990 2090 t
+18 CW f
+(tr -sc 'A-Za-z' '\\012' < genesis |)6 3672 1 990 2420 t
+(sort |)1 648 1 990 2640 t
+(uniq -c |)2 972 1 990 2860 t
+(sort \261nr > genesis.hist)3 2484 1 990 3080 t
+16 S f
+(\267)826 3410 w
+18 R f
+(Sort them by dictionary order)4 2123 1 990 3410 t
+16 S f
+(\267)826 3740 w
+18 R f
+(Sort them by rhyming order \(hint: rev\))6 2771 1 990 3740 t
+18 CW f
+(...)1530 3960 w
+(1 freely)1 864 1 1314 4180 t
+(1 sorely)1 864 1 1314 4400 t
+(5 Surely)1 864 1 1314 4620 t
+(15 surely)1 972 1 1206 4840 t
+(1 falsely)1 972 1 1314 5060 t
+(1 fly)1 540 1 1314 5280 t
+(...)1530 5500 w
+(echo hello world | rev)4 2376 1 990 5940 t
+(dlrow olleh)1 1188 1 990 6160 t
+(echo hello world | rev | rev)6 3024 1 990 6600 t
+(hello world)1 1188 1 990 6820 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 10 10
+%%Page: 11 11
+DpostDict begin
+/saveobj save def
+mark
+11 pagesetup
+18 R f
+(- 11 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Important Points Thus Far]
+17 B f
+(Important Points Thus Far)3 1971 1 720 1760 t
+16 S f
+(\267)826 2420 w
+18 R f
+(Tools: tr, sort, uniq, sed, rev)5 2030 1 990 2420 t
+16 S f
+(\267)826 2970 w
+18 R f
+(Glue:)990 2970 w
+18 S f
+(\357)1434 2970 w
+18 R f
+(,)1522 2970 w
+18 S f
+(<)1612 2970 w
+18 R f
+(,)1711 2970 w
+18 S f
+(>)1801 2970 w
+16 S f
+(\267)826 3520 w
+18 R f
+(Example: count words in a text)5 2239 1 990 3520 t
+16 S f
+(\267)826 4070 w
+18 R f
+(Variations)990 4070 w
+16 S f
+(\267)1096 4400 w
+18 R f
+(tokenize by vowel, merge upper and lower case)7 3415 1 1260 4400 t
+16 S f
+(\267)1096 4730 w
+18 R f
+(sort by freq, dictionary order, rhyming order)6 3186 1 1260 4730 t
+16 S f
+(\267)826 5280 w
+18 R f
+(Pipes)990 5280 w
+18 S f
+(\256)1425 5280 w
+18 R f
+(\257exibility: simple yet powerful)3 2230 1 1648 5280 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 11 11
+%%Page: 12 12
+DpostDict begin
+/saveobj save def
+mark
+12 pagesetup
+18 R f
+(- 12 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Bigrams]
+17 B f
+(Bigrams)720 1760 w
+18 R f
+(Algorithm)720 2090 w
+( by word)2 639(1. tokenize)1 922 2 855 2420 t
+(2. print)1 654 1 855 2750 t
+18 I f
+(word)1554 2750 w
+15 I f
+(i)1950 2786 w
+18 R f
+(and)2052 2750 w
+18 I f
+(word)2356 2750 w
+15 I f
+(i)2752 2786 w
+15 S f
+(+)2831 2786 w
+15 R f
+(1)2939 2786 w
+18 R f
+(on the same line)3 1171 1 3074 2750 t
+(3. count)1 714 1 855 3080 t
+18 CW f
+(tr -sc 'A-Za-z' '\\012' < genesis > genesis.words)7 5184 1 720 3520 t
+(tail +2 genesis.words > genesis.nextwords)4 4428 1 720 3740 t
+(paste genesis.words genesis.nextwords)2 3996 1 720 4180 t
+(...)828 4620 w
+(And God)1 1026 1 720 5060 t
+(God said)1 1134 1 720 5280 t
+(said Let)1 1026 1 720 5500 t
+(Let there)1 1242 1 720 5720 t
+(...)828 6160 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 12 12
+%%Page: 13 13
+DpostDict begin
+/saveobj save def
+mark
+13 pagesetup
+18 R f
+(- 13 -)2 388 1 2686 880 t
+18 CW f
+(paste genesis.words genesis.nextwords |)3 4212 1 720 1760 t
+(sort | uniq -c > genesis.bigrams)5 3456 1 720 1980 t
+(sort \261nr < genesis.bigrams | sed 5q)6 3780 1 720 2420 t
+( the)1 810(372 of)1 810 2 720 2860 t
+( the)1 810(287 in)1 810 2 720 3080 t
+( he)1 594(192 And)1 918 2 720 3300 t
+( the)1 702(185 And)1 918 2 720 3520 t
+(178 said unto)2 1728 1 720 3740 t
+18 R f
+(Exercise: count trigrams)2 1752 1 720 4400 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 13 13
+%%Page: 14 14
+DpostDict begin
+/saveobj save def
+mark
+14 pagesetup
+18 R f
+(- 14 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = grep & egrep: An Example of a Filter]
+17 B f
+(grep & egrep: An Example of a Filter)7 2725 1 720 1760 t
+18 R f
+(Count ``\261ing'' words)2 1526 1 720 2310 t
+18 CW f
+(tr -sc 'A-Za-z' '\\012' < genesis |)6 3672 1 720 2530 t
+(grep 'ing$' |)2 1404 1 720 2750 t
+(sort | uniq -c)3 1512 1 720 2970 t
+20 B f
+(Example Explanation)1 2164 1 1082 3630 t
+18 S f
+(_ _______________________________________)1 3596 1 1082 3670 t
+18 R f
+( lines containing ``gh'')3 1648( \256nd)1 854(grep gh)1 543 3 1082 3890 t
+( lines beginning with ``con'')4 2053( \256nd)1 598(grep '\303con')1 799 3 1082 4110 t
+( lines ending with ``ing'')4 1794( \256nd)1 596(grep 'ing$')1 801 3 1082 4330 t
+( lines containing ``gh'')3 1648( delete)1 775(grep \261v gh)2 768 3 1082 4770 t
+( lines beginning with ``con'')4 2053( delete)1 519(grep \261v '\303con')2 1024 3 1082 4990 t
+( lines ending with ``ing'')4 1794( delete)1 517(grep \261v 'ing$')2 1026 3 1082 5210 t
+18 S f
+(\347)2153 5210 w
+(\347)2153 5030 w
+(\347)2153 4850 w
+(\347)2153 4670 w
+(\347)2153 4490 w
+(\347)2153 4310 w
+(\347)2153 4130 w
+(\347)2153 3950 w
+(\347)2153 3770 w
+(\347)2153 3590 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 14 14
+%%Page: 15 15
+DpostDict begin
+/saveobj save def
+mark
+15 pagesetup
+18 R f
+(- 15 -)2 388 1 2686 880 t
+20 B f
+(Example Explanation)1 3769 1 720 1760 t
+18 S f
+(_ ___________________________________________________________)1 5334 1 720 1800 t
+18 R f
+( with an uppercase char)4 1691( lines)1 2131(grep '[A\261Z]')1 929 3 720 2020 t
+( starting with an uppercase char)5 2274( lines)1 2072(grep '\303[A\261Z]')1 988 3 720 2240 t
+( ending with an uppercase char)5 2225( lines)1 2041(grep '[A\261Z]$')1 1019 3 720 2460 t
+( with all uppercase chars)4 1771( lines)1 1892(grep '\303[A\261Z]*$')1 1168 3 720 2680 t
+( with a vowel)3 973( lines)1 1514(grep '[aeiouAEIOU]')1 1546 3 720 3120 t
+( starting with a vowel)4 1556( lines)1 1455(grep '\303[aeiouAEIOU]')1 1605 3 720 3340 t
+( ending with a vowel)4 1507( lines)1 1424(grep '[aeiouAEIOU]$')1 1636 3 720 3560 t
+( ditto)1 1879(grep \261i '[aeiou]')2 1172 2 720 4000 t
+(grep \261i '\303[aeiou]')2 1231 1 720 4220 t
+(grep \261i '[aeiou]$')2 1262 1 720 4440 t
+( starting with a non-vowel)4 1885( lines)1 1770(grep \261i '\303[\303aeiou]')2 1290 3 720 4880 t
+( ending with a non-vowel)4 1836( lines)1 1739(grep \261i '[\303aeiou]$')2 1321 3 720 5100 t
+( with two or more vowels)5 1841( lines)1 1247(grep \261i '[aeiou].*[aeiou]')2 1813 3 720 5540 t
+( with exactly one vowel)4 1715( lines)1 429(grep \261i '\303[\303aeiou]*[aeiou][\303aeiou]*$')2 2631 3 720 5760 t
+18 S f
+(\347)3396 5760 w
+(\347)3396 5680 w
+(\347)3396 5500 w
+(\347)3396 5320 w
+(\347)3396 5140 w
+(\347)3396 4960 w
+(\347)3396 4780 w
+(\347)3396 4600 w
+(\347)3396 4420 w
+(\347)3396 4240 w
+(\347)3396 4060 w
+(\347)3396 3880 w
+(\347)3396 3700 w
+(\347)3396 3520 w
+(\347)3396 3340 w
+(\347)3396 3160 w
+(\347)3396 2980 w
+(\347)3396 2800 w
+(\347)3396 2620 w
+(\347)3396 2440 w
+(\347)3396 2260 w
+(\347)3396 2080 w
+(\347)3396 1900 w
+(\347)3396 1720 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 15 15
+%%Page: 16 16
+DpostDict begin
+/saveobj save def
+mark
+16 pagesetup
+18 R f
+(- 16 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Regular Expressions]
+17 B f
+(Regular Expressions)1 1498 1 720 1760 t
+20 B f
+(Example Explanation)1 2442 1 802 2530 t
+18 S f
+(_ ______________________________________________)1 4156 1 802 2570 t
+18 R f
+( the letter ``a'')3 1036(a match)1 1832 2 802 2790 t
+( any lowercase letter)3 1476([a\261z] match)1 1832 2 802 3010 t
+( any uppercase letter)3 1476([A\261Z] match)1 1832 2 802 3230 t
+( any digit)2 679([0\2619] match)1 1832 2 802 3450 t
+( any digit)2 679([0123456789] match)1 1832 2 802 3670 t
+( any vowel)2 788([aeiouAEIUO] match)1 1832 2 802 3890 t
+( any letter but a vowel)5 1599([\303aeiouAEIOU] match)1 1832 2 802 4110 t
+( any character)2 1002(. match)1 1832 2 802 4330 t
+( of line)2 508(\303 beginning)1 2113 2 802 4550 t
+( of line)2 508($ end)1 1653 2 802 4770 t
+18 I f
+(x)802 4990 w
+18 R f
+( number of)2 787(* any)1 1574 2 881 4990 t
+18 I f
+(x)3287 4990 w
+(x)802 5210 w
+18 R f
+( or more of)3 801(+ one)1 1574 2 881 5210 t
+18 I f
+(x)3301 5210 w
+18 R f
+(\(egrep only\))1 880 1 3425 5210 t
+18 I f
+(x)802 5430 w
+18 S f
+(\357)881 5430 w
+18 I f
+(y x)1 1306 1 969 5430 t
+18 R f
+(or)2320 5430 w
+18 I f
+(y)2514 5430 w
+18 R f
+(\(egrep only\))1 880 1 2638 5430 t
+(\()802 5650 w
+18 I f
+(x)861 5650 w
+18 R f
+( precedence rules \(egrep only\))4 2166(\) override)1 1852 2 940 5650 t
+18 S f
+(\347)2061 5650 w
+(\347)2061 5550 w
+(\347)2061 5370 w
+(\347)2061 5190 w
+(\347)2061 5010 w
+(\347)2061 4830 w
+(\347)2061 4650 w
+(\347)2061 4470 w
+(\347)2061 4290 w
+(\347)2061 4110 w
+(\347)2061 3930 w
+(\347)2061 3750 w
+(\347)2061 3570 w
+(\347)2061 3390 w
+(\347)2061 3210 w
+(\347)2061 3030 w
+(\347)2061 2850 w
+(\347)2061 2670 w
+(\347)2061 2490 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 16 16
+%%Page: 17 17
+DpostDict begin
+/saveobj save def
+mark
+17 pagesetup
+18 R f
+(- 17 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Grep Exercises]
+17 B f
+(Grep Exercises)1 1100 1 720 1760 t
+18 R f
+( are there in Genesis?)4 1709( many uppercase words)3 1811(1. How)1 665 3 855 2090 t
+(Lowercase? Hint:)1 1314 1 1170 2310 t
+18 CW f
+(wc -l)1 540 1 2592 2310 t
+18 R f
+(or)3177 2310 w
+18 CW f
+(grep -c)1 756 1 3434 2310 t
+18 R f
+( many 4-letter words?)3 1568(2. How)1 665 2 855 2860 t
+( there any words with no vowels?)6 2413(3. Are)1 583 2 855 3410 t
+( ``1-syllable'' words)2 1472(4. Find)1 646 2 855 3960 t
+(\(words with exactly one vowel\))4 2272 1 1170 4180 t
+( ``2-syllable'' words)2 1472(5. Find)1 646 2 855 4730 t
+(\(words with exactly two vowels\))4 2353 1 1170 4950 t
+( two orthographic vowels have only)5 2603( words with)2 857(6. Some)1 725 3 855 5500 t
+( words ending with a)4 1527( Delete)1 562(one phonological vowel.)2 1781 3 1170 5720 t
+( Delete)1 698( from the 2-syllable list.)4 2283(silent ``e'')1 889 3 1170 5940 t
+(diphthongs.)1170 6160 w
+( How)1 454( Genesis with the word ``light.'')5 2382( verses in)2 703(7. Find)1 646 4 855 6710 t
+( Three)1 516( two or more instances of ``light''?)6 2562(many have)1 792 3 1170 6930 t
+( two?)1 394( Exactly)1 638(or more?)1 641 3 1170 7150 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 17 17
+%%Page: 18 18
+DpostDict begin
+/saveobj save def
+mark
+18 pagesetup
+18 R f
+(- 18 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = sed (string editor)]
+17 B f
+(sed \(string editor\))2 1293 1 720 1760 t
+16 S f
+(\267)826 2420 w
+18 R f
+(print the \256rst 5 lines \(quit after the 5th line\))9 3114 1 990 2420 t
+18 CW f
+(sed 5q < genesis)3 1728 1 990 2860 t
+16 S f
+(\267)826 3410 w
+18 R f
+(print up to the \256rst instance of a regular expression)9 3651 1 990 3410 t
+18 CW f
+(sed '/light/q' genesis)2 2376 1 990 3850 t
+16 S f
+(\267)826 4400 w
+18 R f
+(substitution)990 4400 w
+20 B f
+(Example Explanation)1 2678 1 990 4840 t
+18 S f
+(_ _________________________________)1 2997 1 990 4880 t
+18 R f
+(sed 's/light/dark/g')1 1360 1 990 5100 t
+( morph prog)2 888( simple)1 937(sed 's/ly$/\261ly/g')1 1172 3 990 5320 t
+( \256rst \256eld)2 690( select)1 707(sed 's/[ \\011].*//g')2 1330 3 990 5540 t
+18 S f
+(\347)2485 5540 w
+(\347)2485 5520 w
+(\347)2485 5340 w
+(\347)2485 5160 w
+(\347)2485 4980 w
+(\347)2485 4800 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 18 18
+%%Page: 19 19
+DpostDict begin
+/saveobj save def
+mark
+19 pagesetup
+18 R f
+(- 19 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = sed exercises]
+17 B f
+(sed exercises)1 919 1 720 1760 t
+18 R f
+( morphs in genesis)3 1342(1. Count)1 756 2 855 2420 t
+(Hint: use)1 654 1 1170 2640 t
+18 CW f
+(spell -v)1 864 1 1932 2640 t
+18 R f
+(to extract morphs,)2 1300 1 2841 2640 t
+(select \256rst \256eld and count)4 1845 1 1170 2860 t
+18 CW f
+(echo darkness | spell -v)4 2592 1 1170 3300 t
+(+ness darkness)1 1584 1 1170 3520 t
+18 R f
+( tokenize by)2 905( word initial consonant sequences:)4 2524(2. Count)1 756 3 855 4070 t
+( the rest of the word, and)6 1872(word, delete the vowel and)4 1998 2 1170 4290 t
+(count)1170 4510 w
+( word \256nal consonant sequences)4 2323(3. Count)1 756 2 855 5060 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 19 19
+%%Page: 20 20
+DpostDict begin
+/saveobj save def
+mark
+20 pagesetup
+18 R f
+(- 20 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = awk]
+17 B f
+(awk)720 1760 w
+16 S f
+(\267)826 2420 w
+18 R f
+(Etymology)990 2420 w
+16 S f
+(\267)1096 2750 w
+18 R f
+(Alfred Aho)1 822 1 1260 2750 t
+16 S f
+(\267)1096 3080 w
+18 R f
+(Peter Weinberger)1 1257 1 1260 3080 t
+16 S f
+(\267)1096 3410 w
+18 R f
+(Brian Kernighan)1 1201 1 1260 3410 t
+16 S f
+(\267)826 3960 w
+18 R f
+(It is a general purpose programming language,)6 3341 1 990 3960 t
+16 S f
+(\267)826 4510 w
+18 R f
+(though generally intended for shorter programs)5 3391 1 990 4510 t
+(\(1 or 2 lines\))3 921 1 990 4730 t
+16 S f
+(\267)826 5280 w
+18 R f
+(Especially good for manipulating lines and \256elds)6 3521 1 990 5280 t
+(in simple ways)2 1078 1 990 5500 t
+16 S f
+(\267)826 6050 w
+18 R f
+(WARNING:)990 6050 w
+18 CW f
+(awk, nawk, gawk)2 1620 1 2017 6050 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 20 20
+%%Page: 21 21
+DpostDict begin
+/saveobj save def
+mark
+21 pagesetup
+18 R f
+(- 21 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Selecting Fields by Position]
+17 B f
+(Selecting Fields by Position)3 1984 1 720 1760 t
+18 R f
+(print the \256rst \256eld)3 1293 1 720 2090 t
+18 CW f
+(awk '{print $1}')2 1728 1 720 2310 t
+(cut -f1)1 756 1 720 2530 t
+18 R f
+(print the second \256eld)3 1511 1 720 2970 t
+18 CW f
+(awk '{print $2}')2 1728 1 720 3190 t
+(cut -f2)1 756 1 720 3410 t
+18 R f
+(print the last \256eld)3 1262 1 720 3850 t
+18 CW f
+(awk '{print $NF}')2 1836 1 720 4070 t
+(rev | cut -f1 | rev)5 2052 1 720 4290 t
+18 R f
+(print the penultimate \256eld)3 1860 1 720 4730 t
+18 CW f
+(awk '{print $\(NF-1\)}')2 2268 1 720 4950 t
+(rev | cut -f2 | rev)5 2052 1 720 5170 t
+18 R f
+(print the number of \256elds)4 1825 1 720 5610 t
+18 CW f
+(awk '{print $NF}')2 1836 1 720 5830 t
+18 R f
+( Genesis by the number of)5 2179(Exercise: sort the words in)4 2141 2 720 6270 t
+(syllables \(sequences of vowels\))3 2265 1 720 6490 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 21 21
+%%Page: 22 22
+DpostDict begin
+/saveobj save def
+mark
+22 pagesetup
+18 R f
+(- 22 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Filtering by Numerical Comparison]
+17 B f
+(Filtering by Numerical Comparison)3 2604 1 720 1760 t
+18 R f
+(get lines with large frequencies)4 2239 1 720 2090 t
+18 CW f
+(awk '$1 > 100 {print $0}' genesis.hist)6 4104 1 720 2310 t
+(awk '$1 > 100 {print}' genesis.hist)5 3780 1 720 2530 t
+(awk '$1 > 100' genesis.hist)4 2916 1 720 2750 t
+18 R f
+(Recall)720 3190 w
+18 CW f
+(genesis.hist)1286 3190 w
+18 R f
+(contains the words in genesis and)5 2413 1 2627 3190 t
+(their frequencies)1 1197 1 720 3410 t
+(sed 5q genesis.hist)2 1342 1 720 3850 t
+18 CW f
+(17052)720 4070 w
+(2427 and)1 864 1 720 4290 t
+(2407 the)1 864 1 720 4510 t
+(1359 of)1 756 1 720 4730 t
+(1251 And)1 864 1 720 4950 t
+18 R f
+(predicates:)720 5390 w
+18 CW f
+(>, <, >=, <=, ==, !=, &&, ||)7 3024 1 720 5610 t
+18 R f
+(Exercises:)720 6050 w
+( vowel sequences that appear at least 10 times)8 3296(1. \256nd)1 596 2 855 6380 t
+( bigrams that appear exactly twice)5 2453(2. \256nd)1 596 2 855 6710 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 22 22
+%%Page: 23 23
+DpostDict begin
+/saveobj save def
+mark
+23 pagesetup
+18 R f
+(- 23 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Filtering by String Comparison]
+17 B f
+(Filtering by String Comparison)3 2294 1 720 1760 t
+18 CW f
+(sort -u genesis.words > genesis.types)4 3996 1 720 2090 t
+18 R f
+(Find palindromes)1 1263 1 720 2530 t
+18 CW f
+(rev < genesis.types |)3 2268 1 720 2750 t
+(paste - genesis.types |)3 2484 1 720 2970 t
+(awk '$1 == $2')3 1512 1 720 3190 t
+(A A)1 810 1 720 3630 t
+(I I)1 810 1 720 3850 t
+(O O)1 810 1 720 4070 t
+(a a)1 810 1 720 4290 t
+(deed deed)1 1134 1 720 4510 t
+(did did)1 1026 1 720 4730 t
+(ewe ewe)1 1026 1 720 4950 t
+(noon noon)1 1134 1 720 5170 t
+(s s)1 810 1 720 5390 t
+18 R f
+( works on strings)3 1233(1. ==)1 517 2 855 6160 t
+(2. paste)1 683 1 855 6490 t
+(3. \261)1 405 1 855 6820 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 23 23
+%%Page: 24 24
+DpostDict begin
+/saveobj save def
+mark
+24 pagesetup
+18 R f
+(- 24 -)2 388 1 2686 880 t
+(Find words that can also be spelled backwards)7 3334 1 720 1760 t
+18 CW f
+(rev < genesis.types | cat - genesis.types |)7 4644 1 720 1980 t
+(sort | uniq -c | awk '$1 >= 2 {print $2}')10 4428 1 720 2200 t
+(A)720 2640 w
+(I)720 2860 w
+(O)720 3080 w
+(a)720 3300 w
+(deed)720 3520 w
+(did)720 3740 w
+(draw)720 3960 w
+(evil)720 4180 w
+(ewe)720 4400 w
+(live)720 4620 w
+(no)720 4840 w
+(noon)720 5060 w
+(on)720 5280 w
+(s)720 5500 w
+(saw)720 5720 w
+(ward)720 5940 w
+(was)720 6160 w
+18 R f
+( words that are in)4 1253( Find)1 423(Exercise: compare the bible and wsj.)5 2644 3 720 6600 t
+( it with)2 558( Do)1 334( other.)1 482(one and not in the)4 1387 4 720 6820 t
+18 CW f
+(awk)3613 6820 w
+18 R f
+(and then do a)3 1034 1 4006 6820 t
+18 CW f
+(man)720 7040 w
+18 R f
+(on)1089 7040 w
+18 CW f
+(comm,)1377 7040 w
+18 R f
+(and do it again.)3 1107 1 1962 7040 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 24 24
+%%Page: 25 25
+DpostDict begin
+/saveobj save def
+mark
+25 pagesetup
+18 R f
+(- 25 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Filtering by Regular Expression Matching]
+17 B f
+(Filtering by Regular Expression Matching)4 3074 1 720 1760 t
+18 R f
+(lookup words ending in ``ed'')4 2153 1 720 2090 t
+18 CW f
+(awk '$2 \304 /ed$/' genesis.hist)4 3132 1 720 2310 t
+(grep 'ed$' genesis.hist)2 2484 1 720 2530 t
+18 R f
+(count ``ed'' words \(by token\))4 2120 1 720 2970 t
+18 CW f
+(awk '$2 \304 /ed$/ {x = x + $1})8 3024 1 720 3190 t
+( x}' genesis.hist)2 1836(END {print)1 1836 2 1260 3410 t
+(tr -sc 'A-Za-z' '\\012' < genesis |)6 3672 1 720 3850 t
+(grep 'ed$' | wc -l)4 1944 1 720 4070 t
+18 R f
+(count ``ed'' words \(by type\))4 2030 1 720 4510 t
+18 CW f
+(awk '$2 \304 /ed$/ {x = x + 1})8 2916 1 720 4730 t
+( x}' genesis.hist)2 1836(END {print)1 1836 2 1260 4950 t
+(tr -sc 'A-Za-z' '\\012' < genesis |)6 3672 1 720 5390 t
+(grep 'ed$' | sort | uniq -c | wc -l)9 3780 1 720 5610 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 25 25
+%%Page: 26 26
+DpostDict begin
+/saveobj save def
+mark
+26 pagesetup
+18 R f
+(- 26 -)2 388 1 2686 880 t
+(count ``ed'' words both ways)4 2112 1 720 1760 t
+18 CW f
+(awk '/ed$/ {token = token + $1;)6 3348 1 720 1980 t
+(type = type + 1})4 1728 1 2016 2200 t
+( token, type}' genesis.hist)3 2916(END {print)1 1296 2 1260 2420 t
+(awk '/ed$/ {token += $1; type++})5 3456 1 720 2860 t
+( token, type}' genesis.hist)3 2916(END {print)1 1296 2 1260 3080 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Awk Exercises]
+17 B f
+(Awk Exercises)1 1061 1 720 3630 t
+18 R f
+( frequent morphemes in Genesis)4 2321(1. Find)1 646 2 855 3960 t
+( is said that English avoids sequences of)7 2894(2. It)1 424 2 855 4510 t
+18 I f
+(-ing)4220 4510 w
+18 R f
+(words.)4556 4510 w
+(Find bigrams where both words end in)6 3080 1 1170 4730 t
+18 I f
+(-ing)4346 4730 w
+18 R f
+(. Do)1 405 1 4635 4730 t
+(these count as counter-examples to the)5 2773 1 1170 4950 t
+18 I f
+(-ing -ing)1 623 1 3988 4950 t
+18 R f
+(rule?)4656 4950 w
+( bigrams where both)3 1674( comparison's sake, \256nd)3 1946(3. For)1 565 3 855 5500 t
+(words end in)2 952 1 1170 5720 t
+18 I f
+(-ed)2179 5720 w
+18 R f
+( be a prohibition)3 1215( there also)2 760(. Should)1 658 3 2407 5720 t
+(against)1170 5940 w
+18 I f
+(-ed -ed)1 503 1 1725 5940 t
+18 R f
+( any examples of)3 1229( there)1 404(? Are)1 439 3 2228 5940 t
+18 I f
+(-ed -ed)1 504 1 4348 5940 t
+18 R f
+(in)4900 5940 w
+( verse\(s\)?)1 689( Which)1 568( so, how many?)3 1128(Genesis? If)1 855 4 1170 6160 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 26 26
+%%Page: 27 27
+DpostDict begin
+/saveobj save def
+mark
+27 pagesetup
+18 R f
+(- 27 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Memory across lines]
+17 B f
+(Memory across lines)2 1491 1 720 1760 t
+18 R f
+( a)1 141(Exercise: write)1 1095 2 720 2310 t
+18 CW f
+(uniq -c)1 773 1 2081 2310 t
+18 R f
+(program in)1 809 1 2916 2310 t
+18 CW f
+(awk.)3850 2310 w
+18 R f
+(Hint: the)1 651 1 4389 2310 t
+(following ``almost'' works)2 1943 1 720 2530 t
+18 CW f
+(awk '$0 == prev { c++ })6 2484 1 720 2970 t
+($0 != prev { print c, prev)6 2808 1 1260 3190 t
+(c=1)2664 3410 w
+(prev=$0 }')1 1080 1 2664 3630 t
+18 R f
+(Fix it so it doesn't drop the last record.)8 2787 1 720 4070 t
+18 CW f
+(echo a a b b c c | tr ' ' '\\012' | uniq -c)14 4536 1 720 4510 t
+(2 a)1 324 1 1044 4730 t
+(2 b)1 324 1 1044 4950 t
+(2 c)1 324 1 1044 5170 t
+(echo a a b b c c | tr ' ' '\\012' |)12 3672 1 720 5390 t
+(awk '$0 == prev { c++ })6 2484 1 720 5610 t
+($0 != prev { print c, prev)6 2808 1 1260 5830 t
+(c=1; prev=$0 }')2 1620 1 2664 6050 t
+(2 a)1 324 1 720 6490 t
+(2 b)1 324 1 720 6710 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 27 27
+%%Page: 28 28
+DpostDict begin
+/saveobj save def
+mark
+28 pagesetup
+18 R f
+(- 28 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = uniq1]
+17 B f
+(uniq1)720 1760 w
+18 R f
+(sort morphs by freq, and list 3 examples:)7 2931 1 720 2310 t
+18 CW f
+(tr -sc 'A-Za-z' '\\012' < genesis |)6 3672 1 720 2750 t
+(spell -v | sort | uniq1 |)6 2700 1 720 2970 t
+(awk '{print NF-1, $1, $2, $3, $4}' |)7 3888 1 720 3190 t
+(sort -nr)1 864 1 720 3410 t
+( Gentiles)1 1242( Egyptians)1 1242( Cherubims)1 1458(192 +s)1 810 4 720 4070 t
+( Galeed)1 1566( Feed)1 918( Blessed)1 1134(129 +ed)1 918 4 720 4290 t
+( acknowledged)1 1998( abated)1 1242( Cursed)1 1134(77 +d)1 702 4 828 4510 t
+( ascending)1 1350( according)1 1458(49 +ing Binding)2 1944 3 828 4730 t
+( boldly)1 918( abundantly)1 1674( Surely)1 1026(32 +ly)1 810 4 828 4950 t
+18 R f
+(We have to write uniq1)4 1684 1 720 5610 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 28 28
+%%Page: 29 29
+DpostDict begin
+/saveobj save def
+mark
+29 pagesetup
+18 R f
+(- 29 -)2 388 1 2686 880 t
+(uniq1 merges lines with the same \256rst \256eld)7 3088 1 720 1760 t
+(input:)720 2200 w
+18 CW f
+(+s goods)1 1242 1 720 2640 t
+(+s deeds)1 1242 1 720 2860 t
+(+ed failed)1 1350 1 720 3080 t
+(+ed attacked)1 1566 1 720 3300 t
+(+ing playing)1 1458 1 720 3520 t
+(+ing singing)1 1458 1 720 3740 t
+18 R f
+(output:)720 4400 w
+18 CW f
+(+s goods deeds)2 2268 1 720 4840 t
+(+ed failed attacked)2 2592 1 720 5060 t
+(+ing playing singing)2 2484 1 720 5280 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 29 29
+%%Page: 30 30
+DpostDict begin
+/saveobj save def
+mark
+30 pagesetup
+18 R f
+(- 30 -)2 388 1 2686 880 t
+18 CW f
+(awk '$1 == prev {list = list " " $2})9 3888 1 720 1760 t
+($1 != prev {if\(list\) print list)5 3348 1 1260 1980 t
+(list = $0)2 972 1 1548 2200 t
+(prev = $1})2 1080 1 1548 2420 t
+( list}')1 756(END {print)1 1836 2 1260 2640 t
+(awk '$1 == prev {printf "\\t%s", $2})6 3780 1 720 3080 t
+($1 != prev {prev = $1)5 2268 1 1260 3300 t
+(printf "\\n%s\\t%s", $1, $2})3 2808 1 2556 3520 t
+( "\\n"} ')2 864(END {printf)1 1944 2 1260 3740 t
+18 R f
+(New function: printf)2 1475 1 720 4180 t
+( speech from)2 949(Exercise: extract a table of words and parts of)8 3371 2 720 4620 t
+(w7.frag.)720 4840 w
+18 CW f
+(...)936 5280 w
+(abacus n)1 1350 1 720 5720 t
+( pp)1 486(abaft av)1 1458 2 720 5940 t
+(abalone n)1 1350 1 720 6160 t
+( n)1 378(abandon vt)1 1458 2 720 6380 t
+(abandoned aj)1 1458 1 720 6600 t
+(...)936 7040 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 30 30
+%%Page: 31 31
+DpostDict begin
+/saveobj save def
+mark
+31 pagesetup
+18 R f
+(- 31 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Arrays]
+17 B f
+(Arrays)720 1760 w
+18 R f
+(Two programs for counting word frequencies:)5 3312 1 720 2310 t
+18 CW f
+(tr -sc 'A-Za-z' '\\012' < genesis |)6 3672 1 990 2860 t
+(sort |)1 648 1 1206 3080 t
+(uniq -c)1 756 1 1206 3300 t
+(tr -sc 'A-Za-z' '\\012' < genesis |)6 3672 1 990 3960 t
+(awk ')1 540 1 990 4180 t
+({ freq[$0]++ };)2 1620 1 1746 4400 t
+(END { for\(w in freq\))4 2160 1 1314 4620 t
+(print freq[w], w }')3 2052 1 2178 4840 t
+18 R f
+(Arrays are really hashtables)3 1993 1 720 5390 t
+16 S f
+(\267)826 5720 w
+18 R f
+(They grow as needed.)3 1574 1 990 5720 t
+16 S f
+(\267)826 6050 w
+18 R f
+(They take strings \(and numbers\) as keys.)6 2934 1 990 6050 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 31 31
+%%Page: 32 32
+DpostDict begin
+/saveobj save def
+mark
+32 pagesetup
+18 R f
+(- 32 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Mutual Info: An Example of Arrays]
+17 B f
+(Mutual Info: An Example of Arrays)5 2621 1 720 1760 t
+18 I f
+(I)990 2492 w
+18 R f
+(\()1064 2492 w
+18 I f
+(x)1138 2492 w
+18 R f
+(;)1232 2492 w
+18 I f
+(y)1297 2492 w
+18 R f
+(\))1391 2492 w
+18 S f
+(=)1618 2492 w
+18 R f
+(log)1870 2492 w
+15 R f
+(2)2125 2528 w
+18 I f
+(Pr)2275 2618 w
+18 R f
+(\()2470 2618 w
+18 I f
+(x)2544 2618 w
+18 R f
+(\))2638 2618 w
+18 I f
+(Pr)2850 2618 w
+18 R f
+(\()3045 2618 w
+18 I f
+(y)3119 2618 w
+18 R f
+(\))3213 2618 w
+18 I f
+(Pr)2486 2384 w
+18 R f
+(\()2681 2384 w
+18 I f
+(x)2755 2384 w
+18 R f
+(,)2849 2384 w
+18 I f
+(y)2909 2384 w
+18 R f
+(\))3003 2384 w
+18 S1 f
+(_ ___________)1 1051 1 2249 2438 t
+18 I f
+(I)990 3094 w
+18 R f
+(\()1064 3094 w
+18 I f
+(x)1138 3094 w
+18 R f
+(;)1232 3094 w
+18 I f
+(y)1297 3094 w
+18 R f
+(\))1391 3094 w
+18 S f
+(~)1603 3058 w
+(~)1603 3103 w
+18 R f
+(log)1840 3094 w
+15 R f
+(2)2095 3130 w
+18 I f
+(f)2245 3220 w
+18 R f
+(\()2325 3220 w
+18 I f
+(x)2399 3220 w
+18 R f
+(\))2493 3220 w
+18 I f
+(f)2720 3220 w
+18 R f
+(\()2800 3220 w
+18 I f
+(y)2874 3220 w
+18 R f
+(\))2968 3220 w
+18 I f
+(N f)1 324 1 2269 2986 t
+18 R f
+(\()2623 2986 w
+18 I f
+(x)2697 2986 w
+18 R f
+(,)2791 2986 w
+18 I f
+(y)2851 2986 w
+18 R f
+(\))2945 2986 w
+18 S1 f
+(_ _________)1 836 1 2219 3040 t
+18 CW f
+(paste genesis.words genesis.nextwords |)3 4212 1 720 3734 t
+(sort | uniq -c > genesis.bigrams)5 3456 1 720 3954 t
+(cat genesis.hist genesis.bigrams |)3 3672 1 720 4394 t
+(awk 'NF == 2 { f[$2]=$1})5 2592 1 720 4614 t
+(NF == 3 {)3 972 1 1260 4834 t
+(print log\(N*$1/\(f[$2]*f[$3]\)\)/log\(2\), $2, $3})3 4860 1 720 5054 t
+(' "N=`wc -l genesis.words`")3 2916 1 1152 5274 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 32 32
+%%Page: 33 33
+DpostDict begin
+/saveobj save def
+mark
+33 pagesetup
+18 R f
+(- 33 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Array Exercises]
+17 B f
+(Array Exercises)1 1164 1 720 1760 t
+18 R f
+( for small bigram)3 1447( information is unstable)3 1904(1. Mutual)1 834 3 855 2090 t
+( that it doesn't)3 1101( the previous prog so)4 1602(counts. Modify)1 1167 3 1170 2310 t
+( when the bigram count is less)6 2408(produce any output)2 1462 2 1170 2530 t
+(than 5.)1 489 1 1170 2750 t
+(2. Compute)1 975 1 855 3300 t
+18 I f
+(t)1875 3300 w
+18 R f
+(, using the approximation:)3 1886 1 1925 3300 t
+18 I f
+(t)1440 4156 w
+18 S f
+(~)1628 4120 w
+(~)1628 4165 w
+19 S f
+(\326` `````)1 596 1 2503 4329 t
+18 I f
+(f)2623 4329 w
+18 R f
+(\()2703 4329 w
+18 I f
+(x)2777 4329 w
+18 R f
+(,)2871 4329 w
+18 I f
+(y)2931 4329 w
+18 R f
+(\))3025 4329 w
+18 I f
+(f)1925 3922 w
+18 R f
+(\()2005 3922 w
+18 I f
+(x)2079 3922 w
+18 R f
+(,)2173 3922 w
+18 I f
+(y)2233 3922 w
+18 R f
+(\))2327 3922 w
+18 S f
+(-)2416 3922 w
+18 I f
+(N)2590 4048 w
+18 R f
+(1)2606 3814 w
+18 S1 f
+(_ _)1 175 1 2564 3868 t
+18 I f
+(f)2910 3922 w
+18 R f
+(\()2990 3922 w
+18 I f
+(x)3064 3922 w
+18 R f
+(\))3158 3922 w
+18 I f
+(f)3385 3922 w
+18 R f
+(\()3465 3922 w
+18 I f
+(y)3539 3922 w
+18 R f
+(\))3633 3922 w
+18 S1 f
+(_ ____________________)1 1821 1 1898 4102 t
+18 R f
+(Find the 10 bigrams in Genesis with the largest)8 3392 1 1170 4843 t
+18 I f
+(t)4607 4843 w
+18 R f
+(.)4657 4843 w
+( that appear in both Genesis and)6 2656( the words)2 864(3. Print)1 665 3 855 5393 t
+(wsj.frag, followed by their freqs in the two samples.)8 3742 1 1170 5613 t
+(Do a)1 344 1 1170 5833 t
+18 CW f
+(man)1622 5833 w
+18 R f
+(on)1991 5833 w
+18 CW f
+(join)2279 5833 w
+18 R f
+(and do it again.)3 1107 1 2756 5833 t
+( don't distinguish)2 1339( the previous exercise, but)4 2033(4. Repeat)1 813 3 855 6383 t
+(uppercase words from lowercase words.)4 2881 1 1170 6603 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 33 33
+%%Page: 34 34
+DpostDict begin
+/saveobj save def
+mark
+34 pagesetup
+18 R f
+(- 34 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = KWIC]
+17 B f
+(KWIC)720 1760 w
+18 R f
+(Input:)720 2310 w
+18 CW f
+(All's well that ends well.)4 2808 1 990 2640 t
+(Nature abhors a vacuum.)3 2484 1 990 2860 t
+(Every man has a price.)4 2376 1 990 3080 t
+18 R f
+(Output:)720 3630 w
+18 CW f
+(Every man has a price.)4 2376 1 1206 3960 t
+(Nature abhors a vacuum.)3 2484 1 1206 4180 t
+(Nature abhors a vacuum)3 2376 1 1962 4400 t
+(All's well that ends well.)4 2808 1 990 4620 t
+(Every man has a price.)4 2376 1 1638 4840 t
+(Every man has a price)4 2268 1 2070 5060 t
+(Every man has a price.)4 2376 1 990 5280 t
+(All's well that ends well.)4 2808 1 1530 5500 t
+(Nature abhors a vacuum.)3 2484 1 990 5720 t
+(All's well that ends)3 2160 1 2070 5940 t
+(well that ends well.)3 2160 1 1098 6160 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 34 34
+%%Page: 35 35
+DpostDict begin
+/saveobj save def
+mark
+35 pagesetup
+18 R f
+(- 35 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = KWIC Solution]
+17 B f
+(KWIC Solution)1 1141 1 720 1760 t
+18 CW f
+(awk ')1 540 1 990 2420 t
+({for\(i=1; i<length\($0\); i++\))2 3024 1 990 2640 t
+(if\(substr\($0, i, 1\) == " "\))5 2916 1 1314 2860 t
+(printf\("%15s%s\\n",)1638 3080 w
+(substr\($0, i-15, i<=15 ? i-1 : 15\),)6 3780 1 1854 3300 t
+(substr\($0, i, 15\)\)}')2 2160 1 1854 3520 t
+16 S f
+(\267)826 3850 w
+18 R f
+(substr)990 3850 w
+16 S f
+(\267)826 4180 w
+18 R f
+(length)990 4180 w
+16 S f
+(\267)826 4510 w
+18 R f
+(printf)990 4510 w
+16 S f
+(\267)826 4840 w
+18 R f
+(for\(i=1; i)1 653 1 990 4840 t
+18 S f
+(<)1643 4840 w
+18 R f
+(n; i++\) { ... })4 938 1 1742 4840 t
+16 S f
+(\267)826 5170 w
+18 I f
+(pred)990 5170 w
+18 R f
+(?)1364 5170 w
+18 I f
+(true)1488 5170 w
+18 R f
+(:)1822 5170 w
+18 I f
+(false)1917 5170 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 35 35
+%%Page: 36 36
+DpostDict begin
+/saveobj save def
+mark
+36 pagesetup
+18 R f
+(- 36 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Concordance: An Example of the match function]
+17 B f
+(Concordance: An Example of the match function)6 3560 1 720 1760 t
+18 R f
+( of a KWIC index.)4 1455(Exercise: Make a concordance instead)4 2865 2 720 2310 t
+(That is, show only those lines that match the input word.)10 4072 1 720 2530 t
+18 CW f
+(awk '{i=0;)1 1080 1 720 2970 t
+(while\(m=match\(substr\($0, i+1\), "well"\)\){)2 4320 1 1368 3190 t
+(i+=m)1692 3410 w
+(printf\("%15s%s\\n",)1692 3630 w
+(substr\($0, i-15, i<=15 ? i-1 : 15\),)6 3780 1 1908 3850 t
+(substr\($0, i, 15\)\)}')2 2160 1 1908 4070 t
+(All's well that ends)3 2160 1 1692 4510 t
+(well that ends well.)3 2160 1 720 4730 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 36 36
+%%Page: 37 37
+DpostDict begin
+/saveobj save def
+mark
+37 pagesetup
+18 R f
+(- 37 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Passing args from the command-line]
+17 B f
+(Passing args from the command-line)4 2654 1 720 1760 t
+18 CW f
+(awk '{i=0;)1 1080 1 720 2310 t
+(while\(m=match\(substr\($0, i+1\), re\)\) {)3 3996 1 1368 2530 t
+(i+=m)1692 2750 w
+(printf\("%15s%s\\n",)1692 2970 w
+(substr\($0, i-15, i<=15 ? i-1 : 15\),)6 3780 1 1908 3190 t
+(substr\($0, i, 15\)\)})2 2052 1 1908 3410 t
+(' re=" [\303aeiouAEIOU]")2 2268 1 1152 3630 t
+(All's well that ends)3 2160 1 1800 4070 t
+(All's well that ends well)4 2700 1 1260 4290 t
+(well that ends well.)3 2160 1 828 4510 t
+(Nature abhors a vacuum.)3 2484 1 720 4730 t
+(Every man has a pric)4 2160 1 1800 4950 t
+(Every man has a price.)4 2376 1 1368 5170 t
+(Every man has a price.)4 2376 1 720 5390 t
+16 S f
+(\267)826 5940 w
+18 R f
+(match takes regular expressions)3 2284 1 990 5940 t
+16 S f
+(\267)826 6270 w
+18 R f
+(while \( expression \) { action })6 2164 1 990 6270 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 37 37
+%%Page: 38 38
+DpostDict begin
+/saveobj save def
+mark
+38 pagesetup
+18 R f
+(- 38 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = KWIC in C: A First Try]
+17 B f
+(KWIC in C: A First Try)5 1772 1 720 1760 t
+18 CW f
+(#include <stdio.h>)1 1944 1 720 2090 t
+(#define MAXFILE 1000)2 2160 1 720 2310 t
+(#define MIN\(a,b\) \(\(a\)<\(b\)?\(a\):\(b\)\))2 3672 1 720 2530 t
+(char text[MAXFILE];)1 2052 1 720 2750 t
+(output\(char *text, int start, int end\))5 4104 1 720 3190 t
+({)720 3410 w
+(for\( ; start<0; start++\) putchar\(' '\);)5 4104 1 936 3630 t
+(for\( ; start<end; start++\) {)4 3024 1 936 3850 t
+(char c = text[start];)3 2268 1 1152 4070 t
+(if\(c == '\\012'\) c = '_';)5 2592 1 1152 4290 t
+(putchar\(c\);)1152 4510 w
+(})936 4730 w
+(putchar\('\\n'\);)936 4950 w
+(})720 5170 w
+(main\(\))720 5610 w
+({)720 5830 w
+(int i, n;)2 972 1 936 6050 t
+(n = fread\(text, sizeof\(char\), MAXFILE, stdin\);)5 4968 1 936 6270 t
+(for\(i=0;i<n;i++\))936 6490 w
+(if\(text[i] == ' '\))3 1944 1 1152 6710 t
+(output\(text, i-15, MIN\(i+15, n\)\);)3 3564 1 1368 6930 t
+(})720 7150 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 38 38
+%%Page: 39 39
+DpostDict begin
+/saveobj save def
+mark
+39 pagesetup
+18 R f
+(- 39 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Problems with First Try]
+17 B f
+(Problems with First Try)3 1762 1 720 1760 t
+16 S f
+(\267)826 2420 w
+18 R f
+(MAXFILE: a hardwired limit)3 2130 1 990 2420 t
+16 S f
+(\267)826 2970 w
+18 R f
+(Worse, no error checking on MAXFILE)5 2890 1 990 2970 t
+16 S f
+(\267)826 3520 w
+18 R f
+(Large \256les are truncated \(silently\))4 2427 1 990 3520 t
+16 S f
+(\267)826 4070 w
+18 S f
+(\256)990 4070 w
+18 R f
+(incorrect output)1 1140 1 1213 4070 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 39 39
+%%Page: 40 40
+DpostDict begin
+/saveobj save def
+mark
+40 pagesetup
+18 R f
+(- 40 -)2 388 1 2686 880 t
+18 CW f
+(#include <stdio.h>)1 1944 1 720 1760 t
+(#include <sys/types.h>)1 2376 1 720 1980 t
+(#include <sys/stat.h>)1 2268 1 720 2200 t
+(#include <malloc.h>)1 2052 1 720 2420 t
+(void fatal\(char *msg\) {)3 2484 1 720 2860 t
+(fprintf\(stderr, "%s\\n", msg\);)2 3132 1 936 3080 t
+(exit\(2\);})936 3300 w
+(int file_length\(FILE *fd\) {)3 2916 1 720 3740 t
+(struct stat stat_buf;)2 2268 1 936 3960 t
+(if\(fstat\(fileno\(fd\), &stat_buf\) != -1\))3 4104 1 936 4180 t
+(return\(stat_buf.st_size\);)1152 4400 w
+(return\(-1\);})936 4620 w
+(main\(int ac, char **av\) {)4 2700 1 720 5060 t
+(if\(ac != 2\) fatal\("wrong number of args"\);)6 4536 1 936 5280 t
+(else {)1 648 1 936 5500 t
+(FILE *fd = fopen\(av[1], "r"\);)4 3132 1 1152 5720 t
+(int i, n=file_length\(fd\);)2 2700 1 1152 5940 t
+(char *text=malloc\(n\);)1 2268 1 1152 6160 t
+(if\(!text\) fatal\("input is too large"\);)4 4104 1 1152 6380 t
+(fread\(text, sizeof\(char\), n, fd\);)3 3564 1 1152 6600 t
+(for\(i=0;i<n;i++\))1152 6820 w
+(if\(text[i] == ' '\))3 1944 1 1368 7040 t
+(output\(text, i-15, MIN\(i+15, n\)\);}})3 3780 1 1584 7260 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 40 40
+%%Page: 41 41
+DpostDict begin
+/saveobj save def
+mark
+41 pagesetup
+18 R f
+(- 41 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Comments on Second Try]
+17 B f
+(Comments on Second Try)3 1884 1 720 1760 t
+16 S f
+(\267)826 2420 w
+18 R f
+(Works on larger \256les)3 1509 1 990 2420 t
+16 S f
+(\267)826 2970 w
+18 R f
+(Doesn't accept input from a pipe.)5 2400 1 990 2970 t
+16 S f
+(\267)826 3520 w
+18 R f
+(Still doesn't work on really large \256les,)6 2757 1 990 3520 t
+(but now there's an error msg.)5 2111 1 990 3740 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 41 41
+%%Page: 42 42
+DpostDict begin
+/saveobj save def
+mark
+42 pagesetup
+18 R f
+(- 42 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Memory Mapping: Works Quickly on Really Large Files]
+17 B f
+(Memory Mapping: Works Quickly on Really Large Files)7 4129 1 720 1760 t
+18 CW f
+(#include <sys/types.h>)1 2376 1 720 2090 t
+(#include <sys/mman.h>)1 2268 1 720 2310 t
+(#include <sys/stat.h>)1 2268 1 720 2530 t
+(void *mmapfile\(char *filename, int *n\))4 4104 1 720 2970 t
+({)720 3190 w
+(FILE *fd = fopen\(filename, "r"\);)4 3456 1 936 3410 t
+(if\(!fd\) return\(fd\);)1 2052 1 936 3630 t
+(*n = file_length\(fd\);)2 2268 1 936 3850 t
+(return\(mmap\(NULL, *n, PROT_READ,)2 3456 1 936 4070 t
+(MAP_PRIVATE, fileno\(fd\), 0\)\);)2 3132 1 2232 4290 t
+(})720 4510 w
+(main\(int ac, char **av\))3 2484 1 720 4950 t
+({)720 5170 w
+(if\(ac != 2\) fatal\("wrong number of args"\);)6 4536 1 936 5390 t
+(else {)1 648 1 936 5610 t
+(int i, n;)2 972 1 1152 5830 t
+(char *text=mmapfile\(av[1], &n\);)2 3348 1 1152 6050 t
+(if\(!text\) fatal\("can't open input file"\);)4 4428 1 1152 6270 t
+(for\(i=0;i<n;i++\))1152 6490 w
+(if\(text[i] == ' '\))3 1944 1 1368 6710 t
+(output\(text, i-15, MIN\(i+15, n\)\);)3 3564 1 1584 6930 t
+(})936 7150 w
+(})720 7370 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 42 42
+%%Page: 43 43
+DpostDict begin
+/saveobj save def
+mark
+43 pagesetup
+18 R f
+(- 43 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = A Set of Corpus Tools Designed for Mmap]
+17 B f
+(A Set of Corpus Tools Designed for Mmap)7 3084 1 720 1760 t
+16 S f
+(\267)826 2420 w
+18 R f
+(Two data structures \(in separate \256les\):)5 2742 1 990 2420 t
+(1.)1125 2750 w
+18 I f
+(wordlist)1440 2750 w
+18 R f
+(: seq of the)3 792 1 2031 2750 t
+18 B f
+(V)2868 2750 w
+18 R f
+(types in vocab)2 1037 1 3043 2750 t
+(2.)1125 3080 w
+18 I f
+(corpus)1440 3080 w
+18 R f
+(: seq of the)3 792 1 1929 3080 t
+18 B f
+(N)2766 3080 w
+18 R f
+(tokens in the text)3 1232 1 2941 3080 t
+16 S f
+(\267)826 3630 w
+18 R f
+(The)990 3630 w
+18 I f
+(wordlist)1372 3630 w
+18 R f
+(is stored as a sequence of)5 2111 1 2067 3630 t
+18 B f
+(V)4282 3630 w
+18 R f
+(strings,)4516 3630 w
+( \(octal)1 471(separated by nulls \(octal 0\) rather than newlines)7 3579 2 990 3850 t
+( a)1 139( is also)2 527(12\). There)1 805 3 990 4070 t
+18 I f
+(wordlist.idx)2521 4070 w
+18 R f
+(, a sequence of)3 1109 1 3376 4070 t
+18 B f
+(V)4545 4070 w
+18 R f
+(ints,)4735 4070 w
+( the)1 317(indicating the starting position of each word in)7 3733 2 990 4290 t
+( be)1 319( way, the wordlist object can)5 2583(wordlist. This)1 1148 3 990 4510 t
+( having to parse the)4 1617(mmapped into memory without)3 2433 2 990 4730 t
+(strings.)990 4950 w
+16 S f
+(\267)826 5500 w
+18 R f
+(The)990 5500 w
+18 I f
+(corpus)1340 5500 w
+18 R f
+( as a sequence of)4 1321(is stored)1 629 2 1900 5500 t
+18 B f
+(N)3922 5500 w
+18 R f
+(ints, one for)2 916 1 4124 5500 t
+(each of the)2 829 1 990 5720 t
+18 B f
+(N)1885 5720 w
+18 R f
+( int is an offset)4 1150( Each)1 469(tokens in the text.)3 1340 3 2081 5720 t
+(into the wordlist.)2 1223 1 990 5940 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 43 43
+%%Page: 44 44
+DpostDict begin
+/saveobj save def
+mark
+44 pagesetup
+18 R f
+(- 44 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Print & Intern]
+17 B f
+(Print & Intern)2 1067 1 720 1760 t
+16 S f
+(\267)826 2420 w
+18 R f
+(By analogy with LISP,)3 1650 1 990 2420 t
+16 S f
+(\267)1096 2750 w
+18 R f
+(wordlist \304 a symbol table of pnames \(print names\),)8 3622 1 1260 2750 t
+16 S f
+(\267)1096 3080 w
+18 R f
+( an array of pointers into the symbol table.)8 3044(corpus \304)1 627 2 1260 3080 t
+16 S f
+(\267)826 3630 w
+18 R f
+( by manipulating)2 1258(We can count word freqs and ngrams)6 2792 2 990 3630 t
+(the pointers without having to follow the pointers into)8 4050 1 990 3850 t
+(the symbol table.)2 1232 1 990 4070 t
+16 S f
+(\267)826 4620 w
+18 R f
+(Fixed-sized pointers are convenient for random access.)6 3946 1 990 4620 t
+(LISP-like operations:)1 1541 1 990 5060 t
+16 S f
+(\267)1096 5390 w
+18 I f
+(intern)1260 5390 w
+18 R f
+(: text)1 364 1 1689 5390 t
+18 S f
+(\256)2098 5390 w
+18 R f
+(corpus)2321 5390 w
+16 S f
+(\267)1096 5720 w
+18 I f
+(print)1260 5720 w
+18 R f
+(: corpus)1 573 1 1610 5720 t
+18 S f
+(\256)2228 5720 w
+18 R f
+(text)2451 5720 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 44 44
+%%Page: 45 45
+DpostDict begin
+/saveobj save def
+mark
+45 pagesetup
+18 R f
+(- 45 -)2 388 1 2686 880 t
+16 S f
+(\267)826 1760 w
+18 I f
+(intern)990 1760 w
+18 R f
+(: text)1 364 1 1419 1760 t
+18 S f
+(\256)1828 1760 w
+18 R f
+(corpus)2051 1760 w
+18 CW f
+(# poor man's intern)3 2052 1 990 1980 t
+(awk '{if\($1 in tab\) {print tab[$1]})5 3780 1 990 2200 t
+(else {print $1 > "wordlist")4 2916 1 1746 2420 t
+(print tab[$1] = code++ }}' |)5 3024 1 2394 2640 t
+(atoi)990 2860 w
+16 S f
+(\267)826 3190 w
+18 I f
+(print)990 3190 w
+18 R f
+(: corpus)1 573 1 1340 3190 t
+18 S f
+(\256)1958 3190 w
+18 R f
+(text)2181 3190 w
+18 CW f
+(# poor man's print)3 1944 1 990 3410 t
+(itoa |)1 648 1 990 3630 t
+(awk 'BEGIN {while \(getline < "wordlist"\))5 4320 1 990 3850 t
+(tab[code++]=$1})2610 4070 w
+({print tab[$1]}')1 1728 1 1638 4290 t
+16 S f
+(\267)826 4840 w
+18 R f
+(atoi: ascii)1 692 1 990 4840 t
+18 S f
+(\256)1727 4840 w
+18 R f
+(int)1950 4840 w
+(itoa: int)1 554 1 990 5060 t
+18 S f
+(\256)1589 5060 w
+18 R f
+(ascii)1812 5060 w
+16 S f
+(\267)826 5610 w
+18 R f
+(Wordlist is really delimited with nulls, not newlines)7 3731 1 990 5610 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 45 45
+%%Page: 46 46
+DpostDict begin
+/saveobj save def
+mark
+46 pagesetup
+18 R f
+(- 46 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = hist_corpus]
+17 B f
+(hist)720 1760 w
+17 S f
+(_)985 1760 w
+17 B f
+(corpus)1070 1760 w
+18 CW f
+(tr -sc 'A-Za-z' '\\012' |)4 2592 1 720 2090 t
+(sort |)1 648 1 720 2310 t
+(uniq -c)1 756 1 720 2530 t
+(tr -sc 'A-Za-z' '\\012' |)4 2592 1 720 2970 t
+(intern -v wordlist > corpus)4 2916 1 720 3190 t
+(hist_corpus < corpus > hist)4 2916 1 720 3630 t
+(hist = \(int *\)malloc\(sizeof\(int\) * V\);)5 4104 1 720 4070 t
+(memset\(hist, 0, sizeof\(int\) * V\);)4 3564 1 720 4290 t
+(while\(\(w=getw\(stdin\)\) != EOF\))2 3132 1 720 4510 t
+(hist[w]++;)936 4730 w
+(fwrite\(hist, sizeof\(int\), V, stdout\);)3 3996 1 720 4950 t
+16 S f
+(\267)826 5500 w
+18 R f
+( freqs without consulting into the wordlist)6 3110(Counts word)1 940 2 990 5500 t
+(\(symbol table\).)1 1086 1 990 5720 t
+16 S f
+(\267)826 6270 w
+18 R f
+(No string operations)2 1466 1 990 6270 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 46 46
+%%Page: 47 47
+DpostDict begin
+/saveobj save def
+mark
+47 pagesetup
+18 R f
+(- 47 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = counting ngrams]
+17 B f
+(counting ngrams)1 1224 1 720 1760 t
+18 CW f
+(tr -sc 'A-Za-z' '\\012' > w0)5 2916 1 720 2090 t
+(tail +2 > w1)3 1296 1 720 2310 t
+(paste w0 w1 | sort | uniq -c > bigrams)9 4104 1 720 2530 t
+(# independently motivated \(no additional cost\))5 4968 1 720 2970 t
+(tr -sc 'A-Za-z' '\\012' |)4 2592 1 720 3190 t
+(intern -v wordlist > corpus)4 2916 1 720 3410 t
+(generate_bigrams < corpus |)3 2916 1 720 3850 t
+(count_by_hashing |)1 1944 1 936 4070 t
+(count_by_sorting |)1 1944 1 936 4290 t
+(print_bigrams > bigrams)2 2484 1 936 4510 t
+(struct bigram {)2 1620 1 720 4950 t
+(float value;)1 1296 1 936 5170 t
+(int elts[2];)1 1296 1 936 5390 t
+(};)720 5610 w
+16 S f
+(\267)826 5940 w
+18 R f
+(count)990 5940 w
+18 S f
+(_)1389 5940 w
+18 R f
+(by)1479 5940 w
+18 S f
+(_)1659 5940 w
+18 R f
+( large hash table.)3 1226(hashing reads bigrams into a)4 2065 2 1749 5940 t
+( collision, one of)3 1303( If)1 240(Increments values when possible.)3 2507 3 990 6160 t
+(the bigrams is written out on stdout.)6 2590 1 990 6380 t
+16 S f
+(\267)826 6930 w
+18 R f
+(count)990 6930 w
+18 S f
+(_)1389 6930 w
+18 R f
+(by)1479 6930 w
+18 S f
+(_)1659 6930 w
+18 R f
+(sorting works like)2 1385 1 1749 6930 t
+18 CW f
+( uniq -c,)2 1062(sort |)1 692 2 3286 6930 t
+18 R f
+( follow them)2 950(but operates on the pointers, and does not)7 3100 2 990 7150 t
+(into the wordlist.)2 1223 1 990 7370 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 47 47
+%%Page: 48 48
+DpostDict begin
+/saveobj save def
+mark
+48 pagesetup
+18 R f
+(- 48 -)2 388 1 2686 880 t
+18 CW f
+(/* generate bigrams */)3 2376 1 720 1760 t
+(struct bigram b;)2 1728 1 720 1980 t
+(b.value = 1;)2 1296 1 720 2200 t
+(b.elts[1] = getw\(stdin\);)2 2592 1 720 2420 t
+(for\(;;\) {)1 972 1 720 2640 t
+(b.elts[0] = b.elts[1];)2 2376 1 936 2860 t
+(b.elts[1] = getw\(stdin\);)2 2592 1 936 3080 t
+(if\(b.elts[1] == EOF\) break;)3 2916 1 936 3300 t
+(fwrite\(&b, sizeof\(struct bigram\), 1, stdout\);)4 4860 1 936 3520 t
+(})720 3740 w
+(/* print bigrams */)3 2052 1 720 4180 t
+(char *wordlist = mmapfile\("wordlist", &nwl\);)4 4752 1 720 4400 t
+(int *idx = \(int *\)mmapfile\("wordlist.idx", &V\);)5 5076 1 720 4620 t
+(V /= sizeof\(int\);)2 1836 1 720 4840 t
+(#define PNAME\(w\) \(wordlist + idx[w]\))4 3888 1 720 5060 t
+(struct bigram b;)2 1728 1 720 5280 t
+(while\(fread\(&b, sizeof\(struct bigram\), 1, stdin\)\))4 5292 1 720 5500 t
+(printf\("%f\\t%s\\t%s\\n",)936 5720 w
+(b.value,)1692 5940 w
+(PNAME\(b.elts[0]\),)1692 6160 w
+(PNAME\(b.elts[1]\)\);)1692 6380 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 48 48
+%%Page: 49 49
+DpostDict begin
+/saveobj save def
+mark
+49 pagesetup
+18 R f
+(- 49 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Mutual Info]
+17 B f
+(Mutual Info)1 884 1 720 1760 t
+18 CW f
+(generate_bigrams < corpus |)3 2916 1 720 2090 t
+(count_by_hashing |)1 1944 1 936 2310 t
+(count_by_sorting |)1 1944 1 936 2530 t
+(mutual_info |)1 1404 1 936 2750 t
+(print_bigrams > bigrams)2 2484 1 936 2970 t
+(int *hist = \(int *\)mmapfile\("hist", &V\);)5 4320 1 720 3410 t
+(V /= sizeof\(int\);)2 1836 1 720 3630 t
+(int N = file_length\("corpus"\)/sizeof\(int\);)3 4536 1 720 3850 t
+(struct bigram b;)2 1728 1 720 4070 t
+(int *e = b.elts;)3 1728 1 720 4290 t
+(while\(fread\(&b,sizeof\(struct bigram\),1,stdin\)\){)1 5076 1 720 4510 t
+(b.value=log2\(N*b.value/)936 4730 w
+(\(hist[e[0]]*hist[e[1]]\)\);)2340 4950 w
+(fwrite\(&b, sizeof\(struct bigram\), 1, stdout\);)4 4860 1 936 5170 t
+(})720 5390 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 49 49
+%%Page: 50 50
+DpostDict begin
+/saveobj save def
+mark
+50 pagesetup
+18 R f
+(- 50 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = t-score]
+17 B f
+(t-score)720 1760 w
+18 CW f
+(generate_bigrams < corpus |)3 2916 1 720 2090 t
+(count_by_hashing |)1 1944 1 936 2310 t
+(count_by_sorting |)1 1944 1 936 2530 t
+(tscore |)1 864 1 936 2750 t
+(print_bigrams > bigrams)2 2484 1 936 2970 t
+(int *hist = \(int *\)mmapfile\("hist", &V\);)5 4320 1 720 3410 t
+(V /= sizeof\(int\);)2 1836 1 720 3630 t
+(double N = file_length\("corpus"\)/sizeof\(int\);)3 4860 1 720 3850 t
+(struct bigram b;)2 1728 1 720 4070 t
+(int *e = b.elts;)3 1728 1 720 4290 t
+(while\(fread\(&b,sizeof\(struct bigram\),1,stdin\)\){)1 5076 1 720 4510 t
+(b.value=\(b.value-hist[e[0]]*hist[e[1]]/N\)/)936 4730 w
+(sqrt\(b.value\);)1908 4950 w
+(fwrite\(&b, sizeof\(struct bigram\), 1, stdout\);)4 4860 1 936 5170 t
+(})720 5390 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 50 50
+%%Page: 51 51
+DpostDict begin
+/saveobj save def
+mark
+51 pagesetup
+18 R f
+(- 51 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Concordancing]
+17 B f
+(Concordancing)720 1760 w
+18 R f
+(refs)720 2310 w
+18 S f
+(<)1032 2310 w
+18 R f
+(pattern)1131 2310 w
+18 S f
+(> \357)1 232 1 1628 2310 t
+18 R f
+(pconc)1905 2310 w
+(refs uses an inverted \256le \()5 2051 1 720 2750 t
+18 I f
+(conc)2771 2750 w
+18 R f
+(\) to \256nd the locations of)5 1931 1 3109 2750 t
+18 S f
+(<)720 2970 w
+18 R f
+(pattern)819 2970 w
+18 S f
+(>)1316 2970 w
+18 R f
+(in corpus)1 663 1 1460 2970 t
+(pconc then prints these locations)4 2342 1 720 3410 t
+18 CW f
+(/* pconc */)2 1188 1 720 3850 t
+(while\(\(ref=getw\(stdin\)\) != EOF\) {)3 3564 1 720 4070 t
+(int *c = corpus + ref;)5 2376 1 936 4290 t
+(pline\(c-context, c+context\);})1 3132 1 936 4510 t
+(pline\(int *s, int *e\) {)4 2484 1 720 4950 t
+(while\(s < e\))2 1296 1 1044 5170 t
+(printf\("%s ", PNAME\(*s++\)\);)2 2916 1 1260 5390 t
+(putchar\('\\n'\);})1044 5610 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 51 51
+%%Page: 52 52
+DpostDict begin
+/saveobj save def
+mark
+52 pagesetup
+18 R f
+(- 52 -)2 388 1 2686 880 t
+18 CW f
+(/* refs */)2 1080 1 720 1760 t
+(int *conc = \(int *\)mmapfile\("conc", &N\);)5 4320 1 720 1980 t
+(int *cidx = \(int *\)mmapfile\("conc.idx", &V\);)5 4752 1 720 2200 t
+(int *hist = \(int *\)mmapfile\("hist", &V\);)5 4320 1 720 2420 t
+(N /= sizeof\(int\);)2 1836 1 720 2640 t
+(V /= sizeof\(int\);)2 1836 1 720 2860 t
+(int pattern = atoi\(av[1]\);)3 2808 1 720 3080 t
+(fwrite\(conc + cidx[pattern], sizeof\(int\),)3 4428 1 720 3300 t
+(hist[pattern], stdout\);)1 2484 1 1476 3520 t
+18 R f
+(The)720 3960 w
+18 I f
+(conc)1044 3960 w
+18 R f
+(\256le is a seq of)4 997 1 1427 3960 t
+18 B f
+(N)2469 3960 w
+18 R f
+(ints;)2644 3960 w
+(it is the same size as the corpus \256le.)8 2566 1 720 4180 t
+18 CW f
+(itoa < corpus |)3 1620 1 720 4620 t
+(awk '{print $1, NR-1}' |)4 2592 1 720 4840 t
+(sort +n |)2 972 1 720 5060 t
+(awk '{ print $2 }' |)5 2160 1 720 5280 t
+(atoi > conc)2 1188 1 720 5500 t
+18 R f
+(The)720 5940 w
+18 I f
+(conc.idx)1044 5940 w
+18 R f
+(\256le is the cumulative sum of the)6 2304 1 1691 5940 t
+18 I f
+(hist)4040 5940 w
+18 R f
+(\256le.)4345 5940 w
+18 CW f
+(itoa < hist |)3 1404 1 720 6380 t
+(awk ' { x += $1; print x }' |)9 3132 1 720 6600 t
+(atoi > conc.idx)2 1620 1 720 6820 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 52 52
+%%Page: 53 53
+DpostDict begin
+/saveobj save def
+mark
+53 pagesetup
+18 R f
+(- 53 -)2 388 1 2686 880 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Exercises]
+17 B f
+(Exercises)720 1760 w
+18 R f
+(1. intern)1 733 1 855 2420 t
+(2. print)1 654 1 855 2750 t
+18 S f
+(_)1509 2750 w
+18 R f
+(corpus)1599 2750 w
+(3. generate)1 920 1 855 3300 t
+18 S f
+(_)1775 3300 w
+18 R f
+(bigrams)1865 3300 w
+(4. print)1 654 1 855 3630 t
+18 S f
+(_)1509 3630 w
+18 R f
+(bigrams)1599 3630 w
+(5. count)1 714 1 855 4180 t
+18 S f
+(_)1569 4180 w
+18 R f
+(by)1659 4180 w
+18 S f
+(_)1839 4180 w
+18 R f
+(hashing)1929 4180 w
+(6. count)1 714 1 855 4510 t
+18 S f
+(_)1569 4510 w
+18 R f
+(by)1659 4510 w
+18 S f
+(_)1839 4510 w
+18 R f
+(sorting)1929 4510 w
+(7. mutual)1 814 1 855 5060 t
+18 S f
+(_)1669 5060 w
+18 R f
+(info)1759 5060 w
+(8. tscore)1 742 1 855 5390 t
+(9. itoa)1 584 1 855 5940 t
+(10. atoi)1 674 1 765 6270 t
+(11. refs)1 672 1 765 6820 t
+(12. pconc)1 833 1 765 7150 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 53 53
+%%Trailer
+DpostDict begin
+done
+end
+%%Pages: 53
+%%DocumentFonts: Times-Roman Times-Bold Times-Italic Times-Roman Symbol Courier
+
+

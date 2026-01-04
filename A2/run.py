@@ -110,7 +110,6 @@ def train_for_epoch(parser, train_data, dev_data, optimizer, loss_func, batch_si
             loss = loss_func(logits, train_y) # Compute loss
             loss.backward() # Backpropagation
             optimizer.step() # Update parameters
-            optimizer.zero_grad() # Clear gradients for next step #check
 
             ### END YOUR CODE
             prog.update(1)

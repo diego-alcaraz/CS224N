@@ -12,6 +12,8 @@ def main():
 
     # Compute accuracy in the range [0.0, 100.0]
     ### YOUR CODE HERE ###
+    accuracy = utils.evaluate_places("dev.txt", ["London"] * 1000)
+    
     pass
     ### END YOUR CODE ###
 

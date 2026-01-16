@@ -98,10 +98,38 @@ class CharCorruptionDataset(Dataset):
     def __len__(self):
         return len(self.data)
 
+
     def __getitem__(self, idx):
         # TODO [part e]: see spec above
         ### YOUR CODE HERE ###
+        idxdata = self.data[idx]
+        truncated_len = random.randint(4, int(self.block_size * 7/8))
+        truncated_doc = idxdata[:truncated_len]
+        doc_len = len(truncated_doc)
+        if doc_len < 4:
+            prefix = truncated_doc
+            masked_content = ''
+            suffix = ''
+        else:
+            mean_masked_len = doc_len // 4
+            # Use a normal distribution centered around mean_masked_len
+            masked_len = max(1, int(random.gauss(mean_masked_len, mean_masked_len * (1/3))))
+            masked_len = min(masked_len, doc_len - 2)  # Ensure at least 1 char in prefix and suffix
+
+            start_idx = random.randint(1, doc_len - masked_len - 1)
+            prefix = truncated_doc[:start_idx]
+            masked_content = truncated_doc[start_idx:start_idx + masked_len]
+            suffix = truncated_doc[start_idx + masked_len:]
         pass
+
+        masked_string = prefix + self.MASK_CHAR + suffix + self.MASK_CHAR + masked_content
+        padded_length = self.block_size + 1 - len(masked_string)
+        masked_string += self.PAD_CHAR * padded_length
+        input_string = masked_string[:-1]
+        output_string = masked_string[1:]
+        x = torch.tensor([self.stoi[c] for c in input_string], dtype=torch.long)
+        y = torch.tensor([self.stoi[c] for c in output_string], dtype=torch.long)
+        return x, y
         ### END YOUR CODE ###
 
 

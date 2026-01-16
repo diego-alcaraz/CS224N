@@ -66,12 +66,15 @@ model = None
 if args.variant == 'vanilla':
     # TODO: [part c] Make some model here
     ### YOUR CODE HERE ###
+    model = models.GPT(mconf).to(device)
     pass
     ### END YOUR CODE ###
 elif args.variant == 'rope':
     # TODO: [part g] Make some other model here
     # set mconf.rope parameter
     ### YOUR CODE HERE ###
+    mconf.rope = True
+    model = models.GPT(mconf).to(device)
     pass
     ### END YOUR CODE ###
 else:
@@ -102,6 +105,14 @@ if args.function == 'pretrain':
     # writer=writer
 
     ### YOUR CODE HERE ###
+    trainer.pretrain(model, pretrain_dataset, max_epochs=650,
+                     batch_size=128,
+                     learning_rate=args.pretrain_lr,
+                     lr_decay=True,
+                     warmup_tokens=512*20,
+                     final_tokens=650*len(pretrain_dataset)*block_size,
+                     num_workers=0, writer=writer)
+    torch.save(model.state_dict(), args.writing_params_path)
     pass
     ### END YOUR CODE ###
 elif args.function == 'finetune':
@@ -141,6 +152,30 @@ elif args.function == 'finetune':
     #     number of epochs for each case.
 
     ### YOUR CODE HERE ###
+        # - Given:
+    #     1. A finetuning corpus specified in args.finetune_corpus_path
+    #     2. A path args.reading_params_path containing pretrained model
+    #         parameters, or None if finetuning without a pretrained model
+    #     3. An output path args.writing_params_path for the model parameters
+    # - Goals:
+    if args.reading_params_path is not None:
+        model.load_state_dict(torch.load(args.reading_params_path))
+        max_epochs = 10
+    else:
+        max_epochs = 75
+    
+    finetune_text = open(args.finetune_corpus_path, encoding='utf-8').read()
+    finetune_dataset = dataset.NameDataset(pretrain_dataset, finetune_text)
+    
+    trainer.finetune(model, finetune_dataset, max_epochs=max_epochs,
+                     batch_size=256, 
+                     learning_rate=args.finetune_lr,
+                     lr_decay=True, 
+                     warmup_tokens=512*20,
+                     final_tokens=200*len(pretrain_dataset)*block_size,
+                     num_workers=0, writer=writer)
+    torch.save(model.state_dict(), args.writing_params_path)
+
     pass
     ### END YOUR CODE ###
 elif args.function == 'evaluate':

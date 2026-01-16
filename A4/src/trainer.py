@@ -16,6 +16,14 @@ from torch.utils.data.dataloader import DataLoader
 
 logger = logging.getLogger(__name__)
 
+def pretrain(model, train_dataset, **kwargs):
+    config = TrainerConfig(**kwargs)
+    Trainer(model, train_dataset, None, config).train()
+
+def finetune(model, train_dataset, **kwargs):
+    config = TrainerConfig(**kwargs)
+    Trainer(model, train_dataset, None, config).train()
+
 class TrainerConfig:
     # optimization parameters
     max_epochs = 10

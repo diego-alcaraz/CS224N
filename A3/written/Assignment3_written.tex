@@ -1,0 +1,103 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{PingFang SC} % macOS default Chinese font
+
+\geometry{margin=1in}
+
+\title{CS 224N --- Assignment 3 (Written)}
+\author{Diego Alcaraz}
+\date{Winter 2025}
+
+\begin{document}
+\maketitle
+
+\section*{1. Neural Machine Translation with RNNs}
+
+\subsection*{(g) Effect of Encoder Masks in Attention}
+
+The encoder masks assign very large negative values (effectively $-\infty$) to attention scores corresponding to padded positions in the source sentence. After applying the softmax, these positions receive probability mass close to zero. As a result, padded tokens do not contribute to the attention distribution or the attention-weighted sum of encoder hidden states.
+
+This masking is necessary because padding tokens are artificial symbols introduced only to equalize sentence lengths within a batch. Allowing the model to attend to padding would introduce noise and distort the learned alignment between source and target words.
+
+\subsection*{(h) Corpus BLEU Score}
+
+After training the NMT system on the cloud VM and running the test phase, the model achieved a corpus BLEU score greater than 18, satisfying the assignment requirement. This indicates that the trained model produces translations that reasonably align with reference translations at the corpus level.
+Corpus BLEU: 19.253574
+
+\subsection*{(i) Attention Mechanisms Comparison}
+
+\subsubsection*{(i.i) Dot Product vs. Multiplicative Attention}
+
+An advantage of dot product attention is computational efficiency, as it involves only a vector dot product without additional parameters. However, it assumes the encoder and decoder hidden states lie in the same representation space, which may limit flexibility.
+
+Multiplicative attention introduces a learned projection matrix, allowing better alignment between encoder and decoder representations, but at the cost of additional parameters and computation.
+
+\subsubsection*{(i.ii) Additive vs. Multiplicative Attention}
+
+Additive attention is more expressive, as it applies a nonlinear transformation to both encoder and decoder states before computing attention scores. This can help in cases where representations differ significantly.
+
+However, additive attention is computationally more expensive than multiplicative attention due to additional matrix multiplications and nonlinearities, making it slower in practice.
+
+\section*{2. Analyzing NMT Systems}
+
+\subsection*{(a) Effect of Convolutional Layers for Chinese}
+
+Adding a 1D convolutional layer after the embedding layer allows the model to capture local character-level patterns before sequence modeling. This is especially useful in Mandarin Chinese, where words can be composed of multiple characters whose combined meaning differs from the individual characters (e.g., 电 + 脑 $\rightarrow$ 电脑).
+
+The convolution layer helps the encoder form richer representations by modeling short-range compositional structure that may be missed by embeddings alone.
+
+\subsection*{(b) Translation Error Analysis}
+
+\subsubsection*{(i) Singular vs. Plural Error}
+
+The model outputs \textit{“the culprit was subsequently arrested”} instead of the plural form. This likely results from insufficient modeling of number agreement or data imbalance favoring singular forms. Increasing training data or adding explicit morphological features could mitigate this issue.
+
+\subsubsection*{(ii) Repetition Error}
+
+The phrase \textit{“resources have been exhausted”} is repeated twice. This is a common decoding issue caused by exposure bias or insufficient coverage tracking. Coverage-aware attention or repetition penalties during decoding could reduce this error.
+
+\subsubsection*{(iii) Semantic Mismatch}
+
+The phrase \textit{“today’s day”} is semantically incorrect. This error likely stems from rare or idiomatic expressions in the training data. Using larger datasets or pretrained language models could improve semantic fluency.
+
+\subsubsection*{(iv) Idiomatic Expression Failure}
+
+The model fails to translate a proverb correctly, producing a literal but incorrect sentence. Idiomatic expressions are difficult because their meanings are non-compositional. Incorporating phrase-level supervision or external linguistic resources may help.
+
+\subsection*{(c) BLEU Score Analysis}
+
+\subsubsection*{(c.i) BLEU with Two References}
+
+Candidate $c_1$ achieves higher unigram and bigram precision compared to $c_2$, as well as a better brevity penalty. Thus, $c_1$ receives the higher BLEU score. This aligns with intuition, as $c_1$ is more fluent and semantically complete.
+
+\subsubsection*{(c.ii) BLEU with One Reference}
+
+When only one reference is used, BLEU becomes more sensitive to surface form differences. In this case, $c_2$ may receive a higher score despite being less fluent, illustrating BLEU’s limitations with single references.
+
+\subsubsection*{(c.iii) Limitations of Single-Reference BLEU}
+
+Using a single reference is problematic because valid translations can differ lexically while preserving meaning. BLEU penalizes such variation, potentially undervaluing good translations.
+
+\subsubsection*{(c.iv) BLEU vs. Human Evaluation}
+
+Advantages of BLEU include scalability and reproducibility. Disadvantages include insensitivity to meaning and poor handling of paraphrases compared to human judgment.
+
+\subsection*{(d) Beam Search Analysis}
+
+\subsubsection*{(d.i) Translation Quality Over Training}
+
+Translation quality improves over training iterations. Early outputs are fragmented and incomplete, while later outputs are more fluent and semantically accurate. This demonstrates the effectiveness of iterative optimization.
+
+\subsubsection*{(d.ii) Hypothesis Diversity}
+
+At later iterations, beam search hypotheses differ slightly in wording but preserve meaning. This shows that beam search explores multiple plausible translations rather than a single deterministic output.
+
+\end{document}

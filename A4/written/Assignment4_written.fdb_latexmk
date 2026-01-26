@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1769418432.66178 "/Users/diegozapataalcaraz/Desktop/CS224N/A4/written/Assignment4_written.tex" "Assignment4_written.pdf" "Assignment4_written" 1769418433.11092 2
-  "/Users/diegozapataalcaraz/Desktop/CS224N/A4/written/Assignment4_written.tex" 1769418413.74512 13226 9fdba6c7f94f7aca3ccc83b246d39c79 ""
+["pdflatex"] 1769418072.49663 "/Users/diegozapataalcaraz/Desktop/CS224N/A4/written/Assignment4_written.tex" "Assignment4_written.pdf" "Assignment4_written" 1769418072.95165 2
+  "/Users/diegozapataalcaraz/Desktop/CS224N/A4/written/Assignment4_written.tex" 1769418071.68723 13226 9fdba6c7f94f7aca3ccc83b246d39c79 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1136768653 1536 02c06700a42be0f5a28664c7273f82e7 ""
@@ -101,9 +101,9 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1743081815 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1743081721 3345738 f0e5bc14faa84e4b22374104ef0961d9 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
-  "Assignment4_written.aux" 1769418433.05775 162 f042405b684a8c860cba07045d113040 "pdflatex"
-  "Assignment4_written.out" 1769418432.91204 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "Assignment4_written.tex" 1769418413.74512 13226 9fdba6c7f94f7aca3ccc83b246d39c79 ""
+  "Assignment4_written.aux" 1769418072.87985 162 f042405b684a8c860cba07045d113040 "pdflatex"
+  "Assignment4_written.out" 1769418072.73686 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "Assignment4_written.tex" 1769418071.68723 13226 9fdba6c7f94f7aca3ccc83b246d39c79 ""
   (generated)
   "Assignment4_written.aux"
   "Assignment4_written.log"

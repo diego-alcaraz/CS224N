@@ -1,0 +1,14 @@
+# RLHF Training Requirements
+# Install: pip install -r requirements.txt
+
+# Core (likely already in cs224n-gpu)
+torch>=2.0.0
+transformers>=4.30.0
+numpy
+
+# Training utilities
+tqdm
+tensorboard
+
+# Optional
+wandb
